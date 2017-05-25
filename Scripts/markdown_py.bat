@@ -1,0 +1,1 @@
+@"D:\github storage\spdb_inventory_sys\Scripts\python.exe" "D:\github storage\spdb_inventory_sys\Scripts\markdown_py" %*
