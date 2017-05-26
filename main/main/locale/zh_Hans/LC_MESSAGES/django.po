@@ -31,7 +31,7 @@ msgstr "收藏了你的问题："
 
 #: activities/models.py:62
 msgid "answered your question:"
-msgstr "回答了你的问题："
+msgstr "回答了你的事件："
 
 #: activities/models.py:63
 msgid "accepted your answer: "
@@ -477,8 +477,8 @@ msgid "Request Issue"
 msgstr "发起事件"
 
 #: questions/templates/questions/ask.html:30
-msgid "Post Your Question"
-msgstr "发布你的问题"
+msgid "Post Your Issue"
+msgstr "发布你的事件"
 
 #: questions/templates/questions/partial_answer.html:7
 msgid "Click to up vote; click again to toggle"
@@ -498,7 +498,7 @@ msgstr "点击采用这个回答"
 
 #: questions/templates/questions/partial_answer.html:22
 msgid "answered"
-msgstr "回答时间"
+msgstr "反馈时间"
 
 #: questions/templates/questions/partial_question.html:20
 msgid "Favorites"
@@ -507,8 +507,11 @@ msgstr "收藏"
 #: questions/templates/questions/partial_question.html:27
 #: questions/templates/questions/question.html:40
 #: search/templates/search/partial_questions_results.html:14
-msgid "asked"
-msgstr "提问时间"
+msgid "Issued"
+msgstr "提事件时间"
+
+msgid "issued"
+msgstr "提事件时间"
 
 #: questions/templates/questions/question.html:15
 msgid "Issue"
@@ -517,8 +520,8 @@ msgstr "事件"
 #: questions/templates/questions/question.html:22
 #: questions/templates/questions/question.html:25
 #: questions/templates/questions/question.html:28
-msgid "Click to mark this question as favorite; click again to toggle"
-msgstr "点击收藏这个问题；再次点击取消"
+msgid "Click to mark this issue as favorite; click again to toggle"
+msgstr "点击收藏这个事件；再次点击取消"
 
 #: questions/templates/questions/question.html:61
 msgid "Your Answer"
@@ -541,20 +544,20 @@ msgid "All Issues"
 msgstr "所有事件"
 
 #: questions/templates/questions/questions.html:33
-msgid "No question to display"
-msgstr "没有可以显示的问题"
+msgid "No issue to display"
+msgstr "没有可以显示的事件"
 
 #: search/templates/search/partial_articles_results.html:24
 msgid "No article found"
-msgstr "没有找到相关博客"
+msgstr "没有找到相关公告"
 
 #: search/templates/search/partial_feed_results.html:23
 msgid "No feed found"
 msgstr "没有找到相关动态"
 
 #: search/templates/search/partial_questions_results.html:22
-msgid "No question found"
-msgstr "没有找到相关问题"
+msgid "No issue found"
+msgstr "没有找到相关事件"
 
 #: search/templates/search/partial_results_menu.html:17
 #: search/templates/search/partial_users_results.html:3

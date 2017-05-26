@@ -24,7 +24,7 @@
     <div class="question-user">
       <a href="{% url 'profile' question.user.username %}"><img src="{{ question.user.profile.get_picture }}" class="user"></a>
       <a href="{% url 'profile' question.user.username %}" class="username">{{ question.user.profile.get_screen_name }}</a>
-      <span class="asked"> {% trans 'asked' %} {{ question.update_date|naturaltime }}</span>
+      <span class="asked"> {% trans 'issued' %} {{ question.update_date|naturaltime }}</span>
     </div>
     <div class="question-description">
       {{ question.get_description_preview_as_markdown|safe }}
