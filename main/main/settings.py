@@ -45,6 +45,7 @@ INSTALLED_APPS = (
     'main.messenger',
     'main.questions',
     'main.search',
+    'main.equipment',
 )
 
 MIDDLEWARE_CLASSES = [

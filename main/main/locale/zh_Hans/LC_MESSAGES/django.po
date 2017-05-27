@@ -650,3 +650,7 @@ msgstr "想了解更多makedown语法"
 #: templates/markdown_editor.html:64
 msgid "here"
 msgstr "这里"
+
+
+msgid "Equipment"
+msgstr "设备"
