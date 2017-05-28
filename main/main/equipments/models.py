@@ -4,7 +4,7 @@ from django.db import models
 from django.contrib.auth.models import User
 # Create your models here.
 
-class Equipment(models.Model):
+class Equipments(models.Model):
     """docstring for ClassName"""
     name = models.CharField(max_length=255)
     description = models.TextField(max_length=2000)

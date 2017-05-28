@@ -7,9 +7,14 @@ __pycache__/
 *.so
 
 # Distribution / packaging
+pyvenv.cfg
+pip-selfcheck.json
 .Python
 *.pyc
 Scripts/
+tcl/
+Include/
+Lib/
 env/
 build/
 develop-eggs/
