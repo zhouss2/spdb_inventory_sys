@@ -10,7 +10,8 @@ class Equipments(models.Model):
     description = models.TextField(max_length=2000)
     quantity = models.IntegerField(default=0)
     update_date = models.DateTimeField(auto_now_add=True)
-    
+    area = models.ForeignKey(Areas)
+
     class Meta:
         verbose_name = 'Equipment'
         verbose_name_plural = 'Equipments'
@@ -19,3 +20,21 @@ class Equipments(models.Model):
     def __str__(self):
         return self.name
 
+    def __unicode__(self):
+        return self.name
+
+
+class Areas(models.Model):
+    """docstring for ClassName"""
+
+    name = models.CharField(max_length=255)
+    description = models.TextField(max_length=2000)
+    update_date = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = 'Area'
+        verbose_name_plural = 'Areas'
+        ordering = ('-update_date',)
+
+    def __str__(self):
+        return self.name
