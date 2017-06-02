@@ -1,11 +1,13 @@
 from django.shortcuts import render
-form .models import Equipments
-
+from .models import Equipment
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 @login_required
 def equipments(request):
-    equipments = Equipments
-    context = {}
+    equipments = Equipment.objects.all()
+    context = {'equipments':equipments}
+    return render
+
 
 @login_required
 def areas(request):
