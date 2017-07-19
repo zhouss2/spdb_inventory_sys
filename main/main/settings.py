@@ -159,11 +159,11 @@ LOCALE_PATHS = (
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') 
-print(STATIC_ROOT)
+# print(STATIC_ROOT)
 STATICFILES_DIRS = (
     os.path.join(PROJECT_ROOT, 'static'),
 )
-print(STATICFILES_DIRS)
+# print(STATICFILES_DIRS)
 LOGIN_URL = '/'
 LOGIN_REDIRECT_URL = '/feeds/'
 
