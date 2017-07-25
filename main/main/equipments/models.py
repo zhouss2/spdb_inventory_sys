@@ -21,6 +21,24 @@ class Area(models.Model):
         return self.name
 
 
+class EquipmentType(models.Model):
+    """docstring for ClassName"""
+    name = models.CharField(max_length=255)
+    description = models.TextField(max_length=2000, blank=True, null=True)
+    update_date = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        verbose_name = 'EquipmentType'
+        verbose_name_plural = 'EquipmentTypes'
+        ordering = ('-update_date',)
+        
+    def __str__(self):
+        return self.name
+
+    def __unicode__(self):
+        return self.name
+
+
 class Equipment(models.Model):
     """docstring for ClassName"""
     name = models.CharField(max_length=255)
@@ -43,21 +61,5 @@ class Equipment(models.Model):
         return self.name
 
 
-class EquipmentType(models.Model):
-    """docstring for ClassName"""
-    name = models.CharField(max_length=255)
-    description = models.TextField(max_length=2000, blank=True, null=True)
-    update_date = models.DateTimeField(auto_now_add=True)
-    
-    class Meta:
-        verbose_name = 'EquipmentType'
-        verbose_name_plural = 'EquipmentTypes'
-        ordering = ('-update_date',)
-        
-    def __str__(self):
-        return self.name
-
-    def __unicode__(self):
-        return self.name
 
 

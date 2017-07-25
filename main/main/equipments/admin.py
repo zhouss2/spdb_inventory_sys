@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Equipment, Area
+from .models import EquipmentType,Equipment, Area
 
 # -*- coding: utf-8 -*-
 # Register your models here.
@@ -14,6 +14,6 @@ class EquipmentAdmin(admin.ModelAdmin):
         model = Equipment
         
 
-
-admin.site.register(Equipment, EquipmentAdmin)
+admin.site.register(EquipmentType)
 admin.site.register(Area)
+admin.site.register(Equipment, EquipmentAdmin)
