@@ -59,10 +59,40 @@
             <li><a href="#">Settings</a></li>
             <li><a href="#">Profile</a></li>
             <li><a href="#">Help</a></li>
+            
+            {% if not user.is_anonymous %}
+                    <li><a href="{% url 'profile' user.username %}">{{ user.profile.get_screen_name }}</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{% url 'inbox' %}"><span class="badge pull-right"
+                                                                  id="unread-count">0</span> {% trans 'Inbox' %}
+                            </a></li>
+                            <li><a href="{% url 'settings' %}">{% trans 'Account Settings' %}</a></li>
+                            <li class="divider"></li>
+                            <li><a href="{% url 'logout' %}">{% trans 'Log out' %}</a></li>
+                        </ul>
+                    </li>
+            {% else %}
+                <li><a href="{% url 'signup' %}">{% trans 'Sign up' %}</a></li>
+                <li><a href="{% url 'login' %}">{% trans 'Log in' %}</a></li>
+            {% endif %}
+
+
+
+
           </ul>
-          <form class="navbar-form navbar-right">
-            <input type="text" class="form-control" placeholder="Search...">
-          </form>
+            {% if not hide_search %}
+            <form class="navbar-form navbar-right" role="search" action="{% url 'search' %}">
+            <div class="input-group" style="width:210px">
+            <input type="text" class="form-control" name="q" placeholder="{% trans 'Search' %}">
+            <span class="input-group-btn">
+            <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span>
+            </button>
+            </span>
+            </div>
+            </form>
+            {% endif %}
         </div>
       </div>
     </nav>
@@ -73,7 +103,7 @@
           <ul class="nav nav-sidebar">
             
 
-            <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
+            <li class="active"><a href="#">{% trans 'Overview' %} <span class="sr-only">(current)</span></a></li>
             <li><a href="{% url 'feeds' %}">{% trans 'Feed' %}</a></li>
             <li><a href="{% url 'articles' %}">{% trans 'Articles' %}</a></li>
             <li><a href="{% url 'questions' %}">{% trans 'Issues' %}</a></li>
