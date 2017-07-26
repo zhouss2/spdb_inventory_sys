@@ -46,6 +46,7 @@ INSTALLED_APPS = (
     'main.questions',
     'main.search',
     'main.equipments',
+    'main.overview',
 )
 
 MIDDLEWARE_CLASSES = [
@@ -165,6 +166,6 @@ STATICFILES_DIRS = (
 )
 # print(STATICFILES_DIRS)
 LOGIN_URL = '/'
-LOGIN_REDIRECT_URL = '/feeds/'
+LOGIN_REDIRECT_URL = '/overview/'
 
 ALLOWED_SIGNUP_DOMAINS = ['*']

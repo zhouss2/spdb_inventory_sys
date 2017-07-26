@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load staticfiles %}
+
+{% block title %}{% trans 'Overview' %}{% endblock %}
+
+{% block head %}
+    <script src="{% static 'js/highcharts.js' %}"></script>
+    
+        <script type="text/javascript">
+            $(function () {
+                $('#container_pic_module_pie').highcharts({
+                    chart: {
+                        type: 'pie'
+                    },
+                    title: {
+                        text: '121212'
+                    },
+                    tooltip: {
+                        pointFormat: '{series.name}:<b>{point.percentage:.1f}%</b>'
+                    },
+                    
+                    series: [{
+                        type:'pie',
+                        name: '设备占比',
+                        data:
+                        [{% for k, v in module_dict.items %}
+                            {% for module in v %}
+                                ["{{module.0}}",{{module.1}}],
+                            {% endfor %}
+                         {% endfor %}  
+                        ]
+                     }]
+                     
+                });
+            });
+          
+        </script>
+    
+{% endblock head %}
+
+{% block main %}
+ 
+<div id="container_pic_module_pie" style="min-width:700px;height:400px"></div>  
+
+{% endblock main %}

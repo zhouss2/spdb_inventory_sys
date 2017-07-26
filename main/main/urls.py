@@ -34,7 +34,7 @@ urlpatterns = [
         {'template_name': 'core/cover.html'}, name='login'),
     url(r'^logout', auth_views.logout, {'next_page': '/'}, name='logout'),
     url(r'^signup/$', authentication_views.signup, name='signup'),
-
+    url(r'^overview/', include('main.overview.urls')),
     url(r'^feeds/', include('main.feeds.urls')),
     url(r'^settings/', include('main.core.urls')),
     url(r'^articles/', include('main.articles.urls')),
