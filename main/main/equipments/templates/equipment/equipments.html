@@ -1,20 +1,42 @@
-{{% extends "base.html" %}}
-{{% load i18n %}}
-{{% load staticfiles %}}
+{% extends "base.html" %}
+{% load i18n %}
+{% load staticfiles %}
 
-{{% block title %}
-{{% trans "Equipments" %}} 
-{% endblock title %}}
+{% block title %}
+{% trans "Equipments" %}
+{% endblock title %}
 
-{{% block head %}
+{% block head %}
     <link href="{% static 'css/equipments.css' %}" rel="stylesheet">
     <script src="{% static 'js/equipments.js' %}"></script>
-{% endblock head %}}
+{% endblock head %}
 
-{{% block main %}
+{% block main %}
     
 
+ <div class="page-header">
+    <h1>{% trans 'Equipment' %}</h1>
+  </div>
+  <div class="users">
+    <div class="row">
+      {% for equipment in equipments %}
+        <div class="col-md-4">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <a href="{% url 'profile' equipment.name %}">{{ equipment.name }}</a>
+            </div>
+            <div class="panel-body">
+              
+              <p><strong>{% trans 'Quantity' %}:</strong> {{ equipment.quantity }}</p>
+              <p><strong>{% trans 'Area' %}: </strong> {{ equipment.area.name }}</p>
+              <p><strong>{% trans 'Equipment Type' %}:</strong> {{ equipment.equipment_type.name }}</p>
+            </div>
+          </div>
+        </div>
+        {% if forloop.counter|divisibleby:3 %}</div><div class="row">{% endif %}
+      {% endfor %}
+    </div>
+  </div>
 
 
-
-{% endblock main %}}
+{% endblock main %}

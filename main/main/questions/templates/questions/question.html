@@ -8,7 +8,6 @@
     <link href="{% static 'css/questions.css' %}" rel="stylesheet">
     <script src="{% static 'js/questions.js' %}"></script>
 {% endblock head %}
-
 {% block main %}
     <ol class="breadcrumb">
         <li><a href="{% url 'questions' %}">{% trans "Issues" %}</a></li>
@@ -16,19 +15,6 @@
     </ol>
     <div class="row question" question-id="{{ question.id }}">
         {% csrf_token %}
-        <div class="col-md-1 options">
-            {% if user.is_anonymous %}
-                <span class="glyphicon glyphicon-star favorited"
-                      title={% trans 'Click to mark this issue as favorite; click again to toggle' %}></span>
-            {% elif user in question.get_favoriters %}
-                <span class="glyphicon glyphicon-star favorite favorited"
-                      title={% trans 'Click to mark this issue as favorite; click again to toggle' %}></span>
-            {% else %}
-                <span class="glyphicon glyphicon-star-empty favorite"
-                      title={% trans 'Click to mark this issue as favorite; click again to toggle' %}></span>
-            {% endif %}
-            <span class="favorite-count">{{ question.favorites }}</span>
-        </div>
         <div class="col-md-11">
             <h2>{{ question.title }}</h2>
 
@@ -41,6 +27,11 @@
             </div>
             <div class="question-description">
                 {{ question.get_description_as_markdown|safe }}
+            </div>
+            <div class="question-description">
+                {% for requestdetail in question.get_requestdetails %}
+
+                {% endfor %}
             </div>
             {% if question.get_tag_list %}
                 <p>

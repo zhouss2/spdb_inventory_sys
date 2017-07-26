@@ -5,7 +5,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 from main.activities.models import Activity
-
+from main.equipments.models import Area, Equipment
 
 class Question(models.Model):
     user = models.ForeignKey(User)
@@ -84,6 +84,28 @@ class Question(models.Model):
 
     def get_tags(self):
         return Tag.objects.filter(question=self)
+
+    def get_requestdetails(self):
+        return RequestDetail.objects.filter(question=self)
+
+    def create_requestdetails(self, requestdetails):
+        for requestdetail in requestdetails:
+            RequestDetail.objects.get_or_create(destination_equipment=requestdetail.destination_equipment, 
+                quantity=requestdetail.quantity, source_equipment=requestdetail.source_equipment, question=self)
+
+
+class RequestDetail(models.Model):
+    question = models.ForeignKey(Question)
+    source_equipment = models.ForeignKey(Equipment,related_name='source_equipment_id')
+    destination_equipment = models.ForeignKey(Equipment,related_name='destination_equipment_id')
+    quantity = models.IntegerField(default=0)
+
+    def move_banlace(self):
+        self.source_equipment.quantity -= self.quantity
+        self.destination_equipment.quantity += self.quantity
+        self.source_equipment.save()
+        self.destination_equipment.save()
+
 
 
 class Answer(models.Model):

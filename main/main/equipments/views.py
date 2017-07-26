@@ -9,7 +9,7 @@ from django.views.decorators.cache import cache_page
 @login_required
 def equipments(request):
     equipments = Equipment.objects.all()
-    return render(request, 'core/network.html', equipments)
+    return render(request, 'equipment/equipments.html', {'equipments': equipments})
 
 
 @login_required

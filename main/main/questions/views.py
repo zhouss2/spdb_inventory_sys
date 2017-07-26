@@ -7,7 +7,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from main.decorators import ajax_required
 from main.activities.models import Activity
 
-from .models import Question, Answer
+from .models import Question, Answer, RequestDetail
 from .forms import QuestionForm, AnswerForm
 
 
@@ -58,6 +58,12 @@ def ask(request):
         question.description = form.cleaned_data.get('description')
         question.save()
 
+        requestdetail = RequestDetail()
+        requestdetail.destination_equipment = form.cleaned_data.get('destination_equipment')
+        
+
+
+        
         tags = form.cleaned_data.get('tags')
         question.create_tags(tags)
         return redirect('/questions/')
@@ -103,9 +109,9 @@ def accept(request):
     user = request.user
 
     # answer.accept cleans previous accepted answer
-    user.profile.unotify_accepted(answer.question.get_accepted_answer())
+    # user.profile.unotify_accepted(answer.question.get_accepted_answer())
 
-    if answer.question.user == user:
+    if user.username == 'admin' and answer.is_accepted == False:
         answer.accept()
         user.profile.notify_accepted(answer)
         return HttpResponse()
