@@ -9,19 +9,22 @@
     <script type="text/javascript">
         $(function() {
         var Dict = {{ Dict|safe }};
-        var indx = 0
-        var inner = '<div class="col-md-6"><div class="panel panel-default"><div id="container_pic_module_pie' + indx + '" style="min-width:300px;height:300px"></div></div></div>'
-        alert(inner)
-        document.getElementById("divadd").innerHTML = inner; 
+        var nextrow = '</div><div class="row">'
+        var x = 0
+        for(i in Dict) {
+            var inner = '<div class="col-md-4"><div class="panel panel-default"><div id="container_pic_module_pie' + x + '" style="min-width:300px;height:300px"></div></div></div>'
+            document.getElementById("divadd").innerHTML += inner; 
+            if(x != 0 && x%3==0){
+                document.getElementById("divadd").innerHTML += nextrow; 
+            }
+            x = x+1
+        }
 
+        x = 0
 
-
-
-
-        var x=0
         for(i in Dict) {
             var data1 = [];
-            var id = "container_pic_module_pie"+x.toString(); 
+            var id = "container_pic_module_pie" + x.toString(); 
             var list = Dict[i]
             for(index in list){
                 data1.push([list[index][0],list[index][1]]);
@@ -58,13 +61,9 @@
 </div>
 
 
-  <div class="users">
-    <div id="divadd"  class="row">
-
-
-
-    </div>
-  </div>
-
+<div class="users">
+<div id="divadd"  class="row">
+</div>
+</div>
 
 {% endblock main %}
