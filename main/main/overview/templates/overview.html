@@ -6,41 +6,65 @@
 
 {% block head %}
     <script src="{% static 'js/highcharts.js' %}"></script>
-    
-        <script type="text/javascript">
-            $(function () {
-                $('#container_pic_module_pie').highcharts({
+    <script type="text/javascript">
+        $(function() {
+        var Dict = {{ Dict|safe }};
+        var indx = 0
+        var inner = '<div class="col-md-6"><div class="panel panel-default"><div id="container_pic_module_pie' + indx + '" style="min-width:300px;height:300px"></div></div></div>'
+        alert(inner)
+        document.getElementById("divadd").innerHTML = inner; 
+
+
+
+
+
+        var x=0
+        for(i in Dict) {
+            var data1 = [];
+            var id = "container_pic_module_pie"+x.toString(); 
+            var list = Dict[i]
+            for(index in list){
+                data1.push([list[index][0],list[index][1]]);
+            }
+                    chart = new Highcharts.Chart({
                     chart: {
+                        renderTo: id,
                         type: 'pie'
                     },
                     title: {
-                        text: '121212'
+                        text: i+'区域设备比例'
                     },
                     tooltip: {
-                        pointFormat: '{series.name}:<b>{point.percentage:.1f}%</b>'
+                        pointFormat: '数量: {point.y},{series.name}:<b>{point.percentage:.1f}%</b>'
                     },
-                    
                     series: [{
                         type:'pie',
                         name: '设备占比',
-                        data:
-                        [{% for k, v in module_dict.items %}
-                            {% for module in v %}
-                                ["{{module.0}}",{{module.1}}],
-                            {% endfor %}
-                         {% endfor %}  
-                        ]
+                        data:data1 ,
                      }]
-                     
                 });
-            });
-          
-        </script>
-    
+            
+            x = x+1
+          }
+          });
+    </script>
+        
 {% endblock head %}
 
 {% block main %}
- 
-<div id="container_pic_module_pie" style="min-width:700px;height:400px"></div>  
+
+<div class="page-header">
+    <h1>{% trans 'Overview' %}</h1>
+</div>
+
+
+  <div class="users">
+    <div id="divadd"  class="row">
+
+
+
+    </div>
+  </div>
+
 
 {% endblock main %}

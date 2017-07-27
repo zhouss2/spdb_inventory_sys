@@ -55,10 +55,10 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Dashboard</a></li>
-            <li><a href="#">Settings</a></li>
-            <li><a href="#">Profile</a></li>
-            <li><a href="#">Help</a></li>
+            <li><a href="{% url 'overview' %}">Overview</a></li>
+            <li><a href="{% url 'settings' %}">Settings</a></li>
+            <li><a href="{% url 'inbox' %}">Messages</a></li>
+            <li><a href="http://zjitil">Help</a></li>
             
             {% if not user.is_anonymous %}
                     <li><a href="{% url 'profile' user.username %}">{{ user.profile.get_screen_name }}</a></li>

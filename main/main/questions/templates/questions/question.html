@@ -28,11 +28,6 @@
             <div class="question-description">
                 {{ question.get_description_as_markdown|safe }}
             </div>
-            <div class="question-description">
-                {% for requestdetail in question.get_requestdetails %}
-
-                {% endfor %}
-            </div>
             {% if question.get_tag_list %}
                 <p>
                     {% for tag in question.get_tag_list %}

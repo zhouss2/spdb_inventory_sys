@@ -2,7 +2,7 @@ from django import forms
 from django.utils.translation import ugettext_lazy as _
 
 from .models import Question, Answer
-
+from main.equipments.models import Equipment
 
 class QuestionForm(forms.ModelForm):
     title = forms.CharField(
@@ -24,7 +24,8 @@ class QuestionForm(forms.ModelForm):
         help_text=_('Use spaces to separate the tags, \
                      such as "asp.net mvc5 javascript"')
     )
-
+    equipment = forms.ModelChoiceField(widget=forms.Select(),
+                                      queryset=Equipment.objects.all())
     class Meta:
         model = Question
         fields = ['title', 'description', 'tags']

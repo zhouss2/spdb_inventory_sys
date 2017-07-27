@@ -60,7 +60,7 @@ def ask(request):
 
         requestdetail = RequestDetail()
         requestdetail.destination_equipment = form.cleaned_data.get('destination_equipment')
-        
+        requestdetail.save()
 
 
         
