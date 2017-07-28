@@ -651,6 +651,26 @@ msgstr "想了解更多makedown语法"
 msgid "here"
 msgstr "这里"
 
-
 msgid "Equipment"
 msgstr "设备"
+
+msgid "Equipments"
+msgstr "设备"
+
+msgid "Overview"
+msgstr "总览"
+
+msgid "Settings"
+msgstr "设置"
+
+msgid "Quantity"
+msgstr "数量"
+
+msgid "Area"
+msgstr "区域"
+
+msgid "Equipment Type"
+msgstr "设备类型"
+
+msgid "Equipment List"
+msgstr "设备列表"

@@ -41,12 +41,12 @@ INSTALLED_APPS = (
     'main.articles',
     'main.authentication',
     'main.core',
+    'main.overview',
     'main.feeds',
     'main.messenger',
     'main.questions',
     'main.search',
     'main.equipments',
-    'main.overview',
 )
 
 MIDDLEWARE_CLASSES = [

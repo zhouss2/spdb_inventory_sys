@@ -2,6 +2,8 @@ from django.shortcuts import render
 from .models import Equipment
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.cache import cache_page
+from django.views.generic.list import ListView
+from django.utils import timezone
 # Create your views here.
 # 
 # 
@@ -16,3 +18,13 @@ def equipments(request):
 def areas(request):
     pass
 
+
+
+class EquipmentListView(ListView):
+ 
+    model = Equipment
+ 
+    def get_context_data(self, **kwargs):
+        context = super(EquipmentListView, self).get_context_data(**kwargs)
+        context['now'] = timezone.now()
+        return context

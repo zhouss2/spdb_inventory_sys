@@ -1,6 +1,7 @@
 from django.conf.urls import url
 
 from . import views
+from main.equipments.views import EquipmentListView
 
 urlpatterns = [
     url(r'^$', views.equipments, name='equipments'),
@@ -12,4 +13,5 @@ urlpatterns = [
     # url(r'^answer/$', views.answer, name='answer'),
     # url(r'^answer/accept/$', views.accept, name='accept'),
     # url(r'^answer/vote/$', views.vote, name='vote'),
+    url(r'^equipmentlist/$', EquipmentListView.as_view(), name='equipment-list'),
 ]
