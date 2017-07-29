@@ -10,12 +10,12 @@ from django.shortcuts import render, redirect, get_object_or_404
 
 from main.feeds.models import Feed
 from main.feeds.views import feeds, FEEDS_NUM_PAGES
-
+from main.overview.views import overview
 from .forms import ProfileForm, ChangePasswordForm, SavePictureForm
 
 
 def home(request):
-    return feeds(request)
+    return overview(request)
 
 
 @cache_page(60 * 15)

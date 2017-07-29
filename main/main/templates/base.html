@@ -27,9 +27,7 @@
 
     <script type="text/javascript">
 
-              $(function() {
-                     $('nav a[href^="/' + location.pathname.split("/")[1] + '"]').addClass('active');
-                });
+
     </script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -77,9 +75,6 @@
                 <li><a href="{% url 'signup' %}">{% trans 'Sign up' %}</a></li>
                 <li><a href="{% url 'login' %}">{% trans 'Log in' %}</a></li>
             {% endif %}
-
-
-
 
           </ul>
             {% if not hide_search %}
