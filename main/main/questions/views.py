@@ -59,7 +59,12 @@ def ask(request):
         question.save()
 
         requestdetail = RequestDetail()
-        requestdetail.destination_equipment = form.cleaned_data.get('destination_equipment')
+        requestdetail.question = question
+        requestdetail.source_area = form.cleaned_data.get('source_area')
+        requestdetail.destination_area = form.cleaned_data.get('destination_area')
+        requestdetail.source_equipment = form.cleaned_data.get('source_equipment')
+        requestdetail.quantity = form.cleaned_data.get('quantity')
+
         requestdetail.save()
 
 

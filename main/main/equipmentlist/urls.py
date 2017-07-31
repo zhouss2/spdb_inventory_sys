@@ -1,9 +1,10 @@
 from django.conf.urls import url
 
 from . import views
+from main.equipmentlist.views import EquipmentListView
 
 urlpatterns = [
-    url(r'^$', views.equipments, name='equipments'),
+    url(r'^$', EquipmentListView.as_view(), name='equipmentlist'),
     # url(r'^ask/$', views.ask, name='ask'),
     # url(r'^all/$', views.all_question, name='all'),
     # url(r'^answered/$', views.answered, name='answered'),
@@ -12,5 +13,4 @@ urlpatterns = [
     # url(r'^answer/$', views.answer, name='answer'),
     # url(r'^answer/accept/$', views.accept, name='accept'),
     # url(r'^answer/vote/$', views.vote, name='vote'),
-    # url(r'^equipmentlist/$', EquipmentListView.as_view(), name='equipment-list'),
 ]

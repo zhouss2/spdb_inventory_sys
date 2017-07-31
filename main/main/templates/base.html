@@ -26,8 +26,10 @@
     <script src="{% static 'assets/js/ie-emulation-modes-warning.js' %}"></script>
 
     <script type="text/javascript">
-
-
+        $(function() {
+                // alert(location.pathname)
+                $('[href^="/' + location.pathname.split("/")[1] + '"]').parent().addClass('active');
+        });
     </script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -53,6 +55,16 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
+            {% if not user.is_anonymous %}
+                <li>
+                    <a href="#" id="notifications" data-container="body" data-toggle="popover"
+                       data-placement="bottom" title="{% trans 'Notifications' %}">
+                        <span class="glyphicon glyphicon-bell"></span>
+                    </a>
+                </li>
+           {% endif %}
+
+
             <li><a href="{% url 'overview' %}">{% trans 'Overview' %}</a></li>
             <li><a href="{% url 'settings' %}">{% trans 'Settings' %}</a></li>
             <li><a href="{% url 'inbox' %}">{% trans 'Messages' %}</a></li>
@@ -96,13 +108,14 @@
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li class="active"><a href="{% url 'overview' %}">{% trans 'Overview' %} <span class="sr-only">(current)</span></a></li>
-            <li><a href="{% url 'equipment-list' %}">{% trans 'Equipment List' %}</a></li>
+            <li><a href="{% url 'overview' %}">{% trans 'Overview' %}</a></li>
+            <li><a href="{% url 'equipmentlist' %}">{% trans 'Equipment List' %}</a></li>
             <li><a href="{% url 'feeds' %}">{% trans 'Feed' %}</a></li>
             <li><a href="{% url 'articles' %}">{% trans 'Articles' %}</a></li>
             <li><a href="{% url 'questions' %}">{% trans 'Issues' %}</a></li>
             <li><a href="{% url 'network' %}">{% trans 'Network' %}</a></li>
             <li><a href="{% url 'equipments' %}">{% trans 'Equipments' %}</a></li>
+            <li></li>
           </ul>
         </div>
         {# <main> #}

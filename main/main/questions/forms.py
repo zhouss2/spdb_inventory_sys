@@ -29,12 +29,11 @@ class QuestionForm(forms.ModelForm):
                                       queryset=Area.objects.all())
     destination_area = forms.ModelChoiceField(widget=forms.Select(),
                                       queryset=Area.objects.all())
-
-    quantity = forms.IntegerField()
     source_equipment = forms.ModelChoiceField(widget=forms.Select(),
                                       queryset=Equipment.objects.all())
-    destination_equipment = forms.ModelChoiceField(widget=forms.Select(),
-                                      queryset=Equipment.objects.all())
+    quantity = forms.IntegerField()
+    
+
     class Meta:
         model = Question
         fields = ['title', 'description', 'tags']

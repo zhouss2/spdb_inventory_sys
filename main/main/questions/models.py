@@ -88,24 +88,31 @@ class Question(models.Model):
     def get_requestdetails(self):
         return RequestDetail.objects.filter(question=self)
 
-    def create_requestdetails(self, requestdetails):
-        for requestdetail in requestdetails:
-            RequestDetail.objects.get_or_create(destination_equipment=requestdetail.destination_equipment, 
-                quantity=requestdetail.quantity, source_equipment=requestdetail.source_equipment, question=self)
-
 
 class RequestDetail(models.Model):
     question = models.ForeignKey(Question)
     source_equipment = models.ForeignKey(Equipment,related_name='source_equipment_id')
-    destination_equipment = models.ForeignKey(Equipment,related_name='destination_equipment_id')
+    source_area = models.ForeignKey(Area,related_name='source_area_id')
+    destination_area = models.ForeignKey(Area,related_name='destination_area_id')
     quantity = models.IntegerField(default=0)
 
     def move_banlace(self):
         self.source_equipment.quantity -= self.quantity
-        self.destination_equipment.quantity += self.quantity
-        self.source_equipment.save()
-        self.destination_equipment.save()
+        destination_equipments = Equipment.objects.filter(area=self.destination_area,name=self.source_equipment.name)
+        if not destination_equipments:
+            new_equipment = Equipment()
+            new_equipment.area = self.destination_area
+            new_equipment.name = self.source_equipment.name
+            new_equipment.quantity += self.quantity
+            new_equipment.equipment_type = self.source_equipment.equipment_type
+            new_equipment.save()
+        else:
+            for equipment in destination_equipments:
+                equipment.quantity += self.quantity
+                equipment.save()
 
+        self.source_equipment.save()
+        
 
 
 class Answer(models.Model):
@@ -127,6 +134,10 @@ class Answer(models.Model):
 
     def accept(self):
         answers = Answer.objects.filter(question=self.question)
+        requestdetails = RequestDetail.objects.filter(question=self.question)
+        for requestdetail in requestdetails:
+            requestdetail.move_banlace()
+
 
         for answer in answers:
             answer.is_accepted = False

@@ -41,6 +41,7 @@ urlpatterns = [
     url(r'^messages/', include('main.messenger.urls')),
     url(r'^questions/', include('main.questions.urls')),
     url(r'^equipments/', include('main.equipments.urls')),
+    url(r'^equipmentlist/', include('main.equipmentlist.urls')),
     url(r'^notifications/', include('main.activities.urls')),
 
     url(r'^search/$', search_views.search, name='search'),
