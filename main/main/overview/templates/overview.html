@@ -32,13 +32,22 @@
                     chart = new Highcharts.Chart({
                     chart: {
                         renderTo: id,
-                        type: 'pie'
+                        type: 'pie',
+                        borderWidth: 0,
                     },
                     title: {
                         text: i+'区域设备比例'
                     },
                     tooltip: {
                         pointFormat: '数量: {point.y},{series.name}:<b>{point.percentage:.1f}%</b>'
+                    },
+                    plotOptions: {
+                        pie: {
+                            size: '100%'
+                        }
+                    },
+                    credits: {
+                         enabled: false
                     },
                     series: [{
                         type:'pie',

@@ -20,11 +20,4 @@ def areas(request):
 
 
 
-class EquipmentListView(ListView):
- 
-    model = Equipment
- 
-    def get_context_data(self, **kwargs):
-        context = super(EquipmentListView, self).get_context_data(**kwargs)
-        context['now'] = timezone.now()
-        return context
+

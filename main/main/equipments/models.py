@@ -46,7 +46,7 @@ class Equipment(models.Model):
     quantity = models.IntegerField(default=0)
     update_date = models.DateTimeField(auto_now_add=True)
     area = models.ForeignKey(Area)
-    equipment_type = models.ForeignKey(EquipmentType)
+    equipment_type = models.ForeignKey(EquipmentType, default=0)
     is_wasted = models.BooleanField(default=False)
 
     class Meta:

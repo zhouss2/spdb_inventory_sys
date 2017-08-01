@@ -5,22 +5,6 @@
 
 main is an open source **social network** built with [Python][0] using the [Django Web Framework][1].
 
-## Demo: 
-[https://main.qulc.me/][2]
-![](http://i.imgur.com/pGS1kRd.png)
-
-## Fork Features
-* Add unittest and show coverage
-* Migrate from Python 2 to Python 3.6
-* Code style pep8 format
-* Add [Travi CI][3] auto test and deploy to [heroku][4]
-* Change allow guest user access
-* Internationalization add Chinese support
-* Upgrade Django to lastest version
-
-## Doing
-* Add cache optimization
-* Optimization search
 
 ## Install Guide
 ```bash
