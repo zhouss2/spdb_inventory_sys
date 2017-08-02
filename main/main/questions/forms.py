@@ -22,21 +22,30 @@ class QuestionForm(forms.ModelForm):
         label=_('Tags'),
         widget=forms.TextInput(attrs={'class': 'form-control'}),
         help_text=_('Use spaces to separate the tags, \
-                     such as "asp.net mvc5 javascript"')
+                     such as "pc tv"')
     )
-
-    source_area = forms.ModelChoiceField(widget=forms.Select(),
-                                      queryset=Area.objects.all())
-    destination_area = forms.ModelChoiceField(widget=forms.Select(),
-                                      queryset=Area.objects.all())
-    source_equipment = forms.ModelChoiceField(widget=forms.Select(),
-                                      queryset=Equipment.objects.all())
-    quantity = forms.IntegerField()
-    
+    source_area = forms.ModelChoiceField(widget=forms.Select(attrs={'class': 'form-control'}),
+                                      queryset=Area.objects.all(),label='原区域')
+    destination_area = forms.ModelChoiceField(widget=forms.Select(attrs={'class': 'form-control'}),
+                                      queryset=Area.objects.all(),label='目标区域')
+    source_equipment = forms.ModelChoiceField(widget=forms.Select(attrs={'class': 'form-control'}),
+                                      queryset=Equipment.objects.all(),label='设备')
+    quantity = forms.IntegerField(label='数量')
 
     class Meta:
         model = Question
         fields = ['title', 'description', 'tags']
+
+    def clean(self):
+        cleaned_data = super(QuestionForm, self).clean()
+        source_equipment = cleaned_data.get("source_equipment")
+        quantity = cleaned_data.get("quantity")
+
+        if source_equipment.quantity < quantity:
+            msg = "选择的设备数量超出范围."
+            self.add_error('quantity', msg)
+            raise forms.ValidationError("选择的设备数量超出范围")
+        return cleaned_data 
 
 
 class AnswerForm(forms.ModelForm):

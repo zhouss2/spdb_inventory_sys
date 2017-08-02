@@ -64,10 +64,7 @@ def ask(request):
         requestdetail.destination_area = form.cleaned_data.get('destination_area')
         requestdetail.source_equipment = form.cleaned_data.get('source_equipment')
         requestdetail.quantity = form.cleaned_data.get('quantity')
-
         requestdetail.save()
-
-
         
         tags = form.cleaned_data.get('tags')
         question.create_tags(tags)
