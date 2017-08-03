@@ -31,7 +31,7 @@
             {% for requestdetail in question.get_requestdetails %}
             区域：   {{ requestdetail.source_area }}
             目的地：   {{ requestdetail.destination_area }}
-            设备名称：  {{ requestdetail.source_equipment }}
+            设备名称：  {{ requestdetail.source_equipmentarea.equipment.name }}
             数量：  {{ requestdetail.quantity }}
             {% endfor %}
             <div class="question-description">

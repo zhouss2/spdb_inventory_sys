@@ -2,7 +2,7 @@ from django import forms
 from django.utils.translation import ugettext_lazy as _
 
 from .models import Question, Answer
-from main.equipments.models import Equipment, Area
+from main.equipments.models import Equipment, Area, EquipmentArea
 
 class QuestionForm(forms.ModelForm):
     title = forms.CharField(
@@ -28,8 +28,8 @@ class QuestionForm(forms.ModelForm):
                                       queryset=Area.objects.all(),label='原区域')
     destination_area = forms.ModelChoiceField(widget=forms.Select(attrs={'class': 'form-control'}),
                                       queryset=Area.objects.all(),label='目标区域')
-    source_equipment = forms.ModelChoiceField(widget=forms.Select(attrs={'class': 'form-control'}),
-                                      queryset=Equipment.objects.all(),label='设备')
+    source_equipmentarea = forms.ModelChoiceField(widget=forms.Select(attrs={'class': 'form-control'}),
+                                      queryset=EquipmentArea.objects.all(),label='设备')
     quantity = forms.IntegerField(label='数量')
 
     class Meta:
@@ -38,7 +38,7 @@ class QuestionForm(forms.ModelForm):
 
     def clean(self):
         cleaned_data = super(QuestionForm, self).clean()
-        source_equipment = cleaned_data.get("source_equipment")
+        source_equipment = cleaned_data.get("source_equipmentarea")
         quantity = cleaned_data.get("quantity")
 
         if source_equipment.quantity < quantity:

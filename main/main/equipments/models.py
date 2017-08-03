@@ -45,9 +45,9 @@ class Equipment(models.Model):
     description = models.TextField(max_length=2000, blank=True, null=True)
     quantity = models.IntegerField(default=0)
     update_date = models.DateTimeField(auto_now_add=True)
-    area = models.ForeignKey(Area)
+    # area = models.ForeignKey(Area)
     equipment_type = models.ForeignKey(EquipmentType, default=0)
-    is_wasted = models.BooleanField(default=False)
+    # is_wasted = models.BooleanField(default=False)
 
     class Meta:
         verbose_name = 'Equipment'
@@ -60,6 +60,39 @@ class Equipment(models.Model):
     def __unicode__(self):
         return self.name
 
+class EquipmentArea(models.Model):
+    """docstring for ClassName"""
+    area = models.ForeignKey(Area)
+    equipment = models.ForeignKey(Equipment)
+    quantity = models.IntegerField(default=0)
 
 
+    class Meta:
+        verbose_name = 'EquipmentArea'
+        verbose_name_plural = 'EquipmentAreas'
 
+    def __str__(self):
+        return self.equipment.name
+
+    def __unicode__(self):
+        return self.equipment.name
+
+class Operation(models.Model):
+    """docstring for ClassName"""
+    IN = 'I'
+    WASTED = 'W'
+    TRANSFER = 'T'
+    STATUS = (
+        (IN, 'IN'),
+        (WASTED, 'WASTED'),
+        (TRANSFER, 'TRANSFER'),
+    )
+    equipment_area = models.ForeignKey(EquipmentArea)
+    status = models.CharField(max_length=1, choices=STATUS, default=IN)
+    quantity = models.IntegerField(default=0)
+    date_time = models.DateTimeField()
+
+    class Meta:
+            verbose_name = 'Operation'
+            verbose_name_plural = 'Operations'
+            

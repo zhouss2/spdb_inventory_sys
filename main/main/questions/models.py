@@ -5,7 +5,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 from main.activities.models import Activity
-from main.equipments.models import Area, Equipment
+from main.equipments.models import Area, EquipmentArea, Equipment
 
 class Question(models.Model):
     user = models.ForeignKey(User)
@@ -91,27 +91,26 @@ class Question(models.Model):
 
 class RequestDetail(models.Model):
     question = models.ForeignKey(Question)
-    source_equipment = models.ForeignKey(Equipment,related_name='source_equipment_id')
+    source_equipmentarea = models.ForeignKey(EquipmentArea,related_name='source_equipment_id')
     source_area = models.ForeignKey(Area,related_name='source_area_id')
     destination_area = models.ForeignKey(Area,related_name='destination_area_id')
     quantity = models.IntegerField(default=0)
 
     def move_banlace(self):
-        self.source_equipment.quantity -= self.quantity
-        destination_equipments = Equipment.objects.filter(area=self.destination_area,name=self.source_equipment.name)
+        self.source_equipmentarea.quantity -= self.quantity
+        destination_equipments = EquipmentArea.objects.filter(area=self.destination_area,equipment=self.source_equipmentarea.equipment)
         if not destination_equipments:
-            new_equipment = Equipment()
+            new_equipment = EquipmentArea()
             new_equipment.area = self.destination_area
-            new_equipment.name = self.source_equipment.name
+            new_equipment.equipment = self.source_equipmentarea.equipment
             new_equipment.quantity += self.quantity
-            new_equipment.equipment_type = self.source_equipment.equipment_type
             new_equipment.save()
         else:
             for equipment in destination_equipments:
                 equipment.quantity += self.quantity
                 equipment.save()
 
-        self.source_equipment.save()
+        self.source_equipmentarea.save()
         
 
 

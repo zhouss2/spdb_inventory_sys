@@ -27,11 +27,11 @@
       </tr>
    </thead>
    <tbody>
-    {% for equipment in object_list %}
+    {% for equipmentarea in object_list %}
       <tr>
-         <td>{{ equipment.area.name }}</td>
-         <td>{{ equipment.name }}</td>
-         <td>{{ equipment.quantity }}</td>
+         <td>{{ equipmentarea.area.name }}</td>
+         <td>{{ equipmentarea.equipment.name }}</td>
+         <td>{{ equipmentarea.quantity }}</td>
       </tr>
     {% endfor %}
    </tbody>
