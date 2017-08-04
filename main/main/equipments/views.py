@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Equipment
+from .models import Equipment, Operation, EquipmentArea
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.cache import cache_page
 from django.views.generic.list import ListView
@@ -19,5 +19,11 @@ def areas(request):
     pass
 
 
+@login_required
+def operations(request):
+    operations = Operation.objects.orderby("date_time")
+    equipment = Equipment.objects.all()
 
+
+    return render(request, 'equipment/operations.html', {'operations': operations})
 

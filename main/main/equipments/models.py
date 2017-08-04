@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 class Area(models.Model):
     """docstring for ClassName"""
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, unique=True)
     description = models.TextField(max_length=2000, blank=True, null=True)
     update_date = models.DateTimeField(auto_now_add=True)
 
@@ -23,7 +23,7 @@ class Area(models.Model):
 
 class EquipmentType(models.Model):
     """docstring for ClassName"""
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, unique=True)
     description = models.TextField(max_length=2000, blank=True, null=True)
     update_date = models.DateTimeField(auto_now_add=True)
     
@@ -41,9 +41,9 @@ class EquipmentType(models.Model):
 
 class Equipment(models.Model):
     """docstring for ClassName"""
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, unique=True)
     description = models.TextField(max_length=2000, blank=True, null=True)
-    quantity = models.IntegerField(default=0)
+    # quantity = models.IntegerField(default=0)
     update_date = models.DateTimeField(auto_now_add=True)
     # area = models.ForeignKey(Area)
     equipment_type = models.ForeignKey(EquipmentType, default=0)
@@ -59,6 +59,10 @@ class Equipment(models.Model):
 
     def __unicode__(self):
         return self.name
+
+    def get_quantity(self):
+        return sum([x.quantity for x in EquipmentArea.objects.filter(equipment=self)])
+
 
 class EquipmentArea(models.Model):
     """docstring for ClassName"""
@@ -87,12 +91,18 @@ class Operation(models.Model):
         (WASTED, 'WASTED'),
         (TRANSFER, 'TRANSFER'),
     )
-    equipment_area = models.ForeignKey(EquipmentArea)
+    equipment = models.ForeignKey(Equipment)
     status = models.CharField(max_length=1, choices=STATUS, default=IN)
     quantity = models.IntegerField(default=0)
     date_time = models.DateTimeField()
+    remark = models.TextField(max_length=2000, blank=True, null=True)
 
     class Meta:
             verbose_name = 'Operation'
             verbose_name_plural = 'Operations'
-            
+     
+    def __str__(self):
+        return self.equipment.name
+
+    def __unicode__(self):
+        return self.equipment.name         

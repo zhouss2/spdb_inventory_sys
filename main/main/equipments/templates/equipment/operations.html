@@ -1,0 +1,43 @@
+
+{% extends "base.html" %}
+{% load i18n %}
+{% load staticfiles %}
+
+{% block title %}
+{% trans "Operations" %}
+{% endblock title %}
+
+{% block head %}
+    <link href="{% static 'css/operations.css' %}" rel="stylesheet">
+    <script src="{% static 'js/operations.js' %}"></script>
+{% endblock head %}
+
+{% block main %}
+
+<div class="page-header">
+    <h1>{% trans 'Equipment List' %}</h1>
+</div>
+<table class="table">
+    <caption>设备出入库记录</caption>
+   <thead>
+      <tr>
+         <th>时间</th>
+         <th>操作类型</th>
+         <th>设备名称</th>
+         <th>数量</th>
+      </tr>
+   </thead>
+   <tbody>
+    {% for operation in object_list %}
+      <tr>
+         <td>{{ operation.date_time }}</td>
+         <td>{{ operation.status}}</td>
+         <td>{{ operation.equipment.name}}</td>
+         <td>{{ operation.quantity }}</td>
+      </tr>
+    {% endfor %}
+   </tbody>
+</table>
+
+
+{% endblock main %}

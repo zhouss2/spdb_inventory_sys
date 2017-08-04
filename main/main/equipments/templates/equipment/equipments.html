@@ -26,9 +26,7 @@
               <a>{{ equipment.name }}</a>
             </div>
             <div class="panel-body">
-              
-              <p><strong>{% trans 'Quantity' %}:</strong> {{ equipment.quantity }}</p>
-              <p><strong>{% trans 'Area' %}: </strong> {{ equipment.area.name }}</p>
+              <p><strong>{% trans 'Quantity' %}:</strong> {{ equipment.get_quantity }}</p>
               <p><strong>{% trans 'Equipment Type' %}:</strong> {{ equipment.equipment_type.name }}</p>
             </div>
           </div>
