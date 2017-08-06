@@ -97,6 +97,39 @@ class Operation(models.Model):
     date_time = models.DateTimeField()
     remark = models.TextField(max_length=2000, blank=True, null=True)
 
+    def save(self, *args, **kwargs):
+        area = Area.objects.get(name='warehouse')
+        equipment_areas = EquipmentArea.objects.filter(area=area,equipment=self.equipment)
+        if self.status=='I':
+            if not equipment_areas:
+                new_equipment_area = EquipmentArea()
+                new_equipment_area.area = area
+                new_equipment_area.equipment = self.equipment
+                new_equipment_area.quantity += self.quantity
+                new_equipment_area.save()
+            else:
+                for equipment in equipment_areas:
+                    equipment.quantity += self.quantity
+                    equipment.save()
+        elif self.status=='W':
+            if not equipment_areas:
+                raise ValueError('No equipment to waste')
+            else:
+                for equipment in equipment_areas:
+                    equipment.quantity -= self.quantity
+                    equipment.save()
+        elif self.status=='T':
+            if not equipment_areas:
+                raise ValueError('No equipment to transfer')
+            else:
+                for equipment in equipment_areas:
+                    equipment.quantity -= self.quantity
+                    equipment.save()
+        super(Operation, self).save(*args, **kwargs)
+
+
+
+
     class Meta:
             verbose_name = 'Operation'
             verbose_name_plural = 'Operations'
