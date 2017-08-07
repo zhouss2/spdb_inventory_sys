@@ -96,6 +96,7 @@ class Operation(models.Model):
     quantity = models.IntegerField(default=0)
     date_time = models.DateTimeField()
     remark = models.TextField(max_length=2000, blank=True, null=True)
+    area = models.ForeignKey(Area, blank=True, null=True)
 
     def save(self, *args, **kwargs):
         area = Area.objects.get(name='warehouse')
@@ -121,7 +122,19 @@ class Operation(models.Model):
         elif self.status=='T':
             if not equipment_areas:
                 raise ValueError('No equipment to transfer')
+                
             else:
+                equipment_dest_area = EquipmentArea.objects.filter(area=self.area,equipment=self.equipment)
+                if not equipment_dest_area:
+                    new_equipment_area = EquipmentArea()
+                    new_equipment_area.area = self.area
+                    new_equipment_area.equipment = self.equipment
+                    new_equipment_area.quantity += self.quantity
+                    new_equipment_area.save()
+                else:
+                    for equipment in equipment_dest_area:
+                        equipment.quantity += self.quantity
+                        equipment.save()
                 for equipment in equipment_areas:
                     equipment.quantity -= self.quantity
                     equipment.save()

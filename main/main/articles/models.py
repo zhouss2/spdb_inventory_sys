@@ -24,6 +24,7 @@ class Article(models.Model):
     update_date = models.DateTimeField(blank=True, null=True)
     update_user = models.ForeignKey(User, null=True, blank=True,
                                     related_name="+")
+    upload = models.FileField(upload_to='uploads/%Y/%m/%d/', null=True, blank=True)
 
     class Meta:
         verbose_name = _("Article")

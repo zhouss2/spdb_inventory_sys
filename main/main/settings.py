@@ -170,3 +170,6 @@ LOGIN_URL = '/'
 LOGIN_REDIRECT_URL = '/overview/'
 
 ALLOWED_SIGNUP_DOMAINS = ['*']
+
+
+MEDIA_ROOT = '/media/'

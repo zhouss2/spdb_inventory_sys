@@ -22,7 +22,8 @@ class ArticleForm(forms.ModelForm):
         label=_('Tags'),
         help_text=_(
             'Use spaces to separate the tags, such as "Java Linux Python"'))
+    upload = forms.FileField(required=False)
 
     class Meta:
         model = Article
-        fields = ['title', 'content', 'tags', 'status']
+        fields = ['title', 'content', 'tags', 'status','upload']

@@ -22,17 +22,18 @@
    <thead>
       <tr>
          <th>设备名称</th>
-
-         <th>设备名称</th>
-         
+         {% for operation in object_list %}
+         <th>{{ operation.date_time }}</th>
+         {% endfor %}
       </tr>
    </thead>
    <tbody>
     {% for operation in object_list %}
       <tr>
-         <td>{{ equipmentarea.area.name }}</td>
-         <td>{{ equipmentarea.equipment.name }}</td>
-         <td>{{ equipmentarea.quantity }}</td>
+        <td>{{ operation.equipment.name }}</td>
+          {% for o in object_list %}
+           <td>{{ o.quantity }}</td>
+          {% endfor %}
       </tr>
     {% endfor %}
    </tbody>
