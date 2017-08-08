@@ -25,6 +25,7 @@ from .core import views as core_views
 from .search import views as search_views
 from .authentication import views as authentication_views
 
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^i18n/', include('django.conf.urls.i18n', namespace='i18n')),
@@ -47,6 +48,7 @@ urlpatterns = [
     url(r'^search/$', search_views.search, name='search'),
     url(r'^network/$', core_views.network, name='network'),
     url(r'^(?P<username>[^/]+)/$', core_views.profile, name='profile'),
+    url(r'^media/uploads/$', core_views.profile, name='profile'),
 ]
 
 # if settings.DEBUG:

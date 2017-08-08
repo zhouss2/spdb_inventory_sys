@@ -18,6 +18,13 @@
   <div class="content">
     {{ article.get_content_as_markdown|safe }}
   </div>
+  <div class="content">
+    <a href="{{MEDIA_URL}}{{article.upload}}">{{article.upload}}</a>
+  </div>
+
+
+
+
   {% if article.get_tags %}
     <div class="tags">
       {% for tag in article.get_tags %}
@@ -25,7 +32,5 @@
       {% endfor %}
     </div>
   {% endif %}
-  <div>
-    {{ uf.as_p}}
-  </div>
+  
 </article>
