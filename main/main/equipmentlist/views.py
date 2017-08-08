@@ -21,5 +21,7 @@ class OperationListView(ListView):
     def get_context_data(self, **kwargs):
         context = super(OperationListView, self).get_context_data(**kwargs)
         context['now'] = timezone.now()
+        context['object_filter'] = Operation.objects.distinct('equipment')
+        context['object_date_time'] = Operation.objects.order_by('date_time')
         return context
 

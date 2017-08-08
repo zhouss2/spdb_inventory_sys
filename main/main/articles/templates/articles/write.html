@@ -11,7 +11,7 @@
     <li><a href="{% url 'articles' %}">{% trans 'Articles' %}</a></li>
     <li class="active">{% trans 'Write Article' %}</li>
   </ol>
-  <form action="{% url 'write' %}" method="post" role="form">
+  <form action="{% url 'write' %}" method="post" role="form" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.status }}
     {% for field in form.visible_fields %}
@@ -29,6 +29,12 @@
         {% endfor %}
       </div>
     {% endfor %}
+    <p>
+        {{ form.docfile.errors }}
+        {{ form.docfile }}
+    </p>
+
+
     <div class="form-group">
       <button type="button" class="btn btn-primary publish">{% trans 'Publish' %}</button>
       <button type="button" class="btn btn-default draft">{% trans 'Save Draft' %}</button>

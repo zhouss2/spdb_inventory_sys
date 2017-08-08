@@ -51,7 +51,7 @@ def write(request):
         form = ArticleForm()
         return render(request, 'articles/write.html', {'form': form})
 
-    form = ArticleForm(request.POST)
+    form = ArticleForm(request.POST,request.FILES)
 
     if form.is_valid():
         article = Article()
@@ -59,6 +59,7 @@ def write(request):
         article.title = form.cleaned_data.get('title')
         article.content = form.cleaned_data.get('content')
         status = form.cleaned_data.get('status')
+        article.upload = form.cleaned_data.get('upload')
 
         if status in [Article.PUBLISHED, Article.DRAFT]:
             article.status = form.cleaned_data.get('status')

@@ -10,7 +10,7 @@
     <span class="badge">{{ count.articles }}</span>
   </a>
   <a href="{% url 'search' %}?q={{ querystring }}&type=questions" class="list-group-item{% if active == 'questions' %} active{% endif %}">
-    <span>{% trans 'Questions' %}</span>
+    <span>{% trans 'Issues' %}</span>
     <span class="badge">{{ count.questions }}</span>
   </a>
   <a href="{% url 'search' %}?q={{ querystring }}&type=users" class="list-group-item{% if active == 'users' %} active{% endif %}">

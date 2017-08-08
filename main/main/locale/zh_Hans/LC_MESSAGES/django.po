@@ -678,3 +678,13 @@ msgstr "设备列表"
 
 msgid "Answers"
 msgstr "回复"
+
+msgid "Operation List"
+msgstr "设备出入记录"
+
+
+msgid "Operations"
+msgstr "记录"
+
+msgid "Select a file"
+msgstr "选择文件"

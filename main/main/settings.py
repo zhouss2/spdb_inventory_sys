@@ -126,10 +126,10 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.'
                 'MinimumLengthValidator',
     },
-    {
-        'NAME': 'django.contrib.auth.password_validation.'
-                'CommonPasswordValidator',
-    },
+    # {
+    #     'NAME': 'django.contrib.auth.password_validation.'
+    #             'CommonPasswordValidator',
+    # },
     {
         'NAME': 'django.contrib.auth.password_validation.'
                 'NumericPasswordValidator',
@@ -172,4 +172,5 @@ LOGIN_REDIRECT_URL = '/overview/'
 ALLOWED_SIGNUP_DOMAINS = ['*']
 
 
-MEDIA_ROOT = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'

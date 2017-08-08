@@ -21,8 +21,8 @@ class ArticleForm(forms.ModelForm):
         required=False,
         label=_('Tags'),
         help_text=_(
-            'Use spaces to separate the tags, such as "Java Linux Python"'))
-    upload = forms.FileField(required=False)
+            'Use spaces to separate the tags, such as "PC LCD"'))
+    upload = forms.FileField(label=_('Select a file'))
 
     class Meta:
         model = Article

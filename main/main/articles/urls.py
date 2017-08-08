@@ -11,4 +11,5 @@ urlpatterns = [
     url(r'^tag/(?P<tag_name>.+)/$', views.tag, name='tag'),
     url(r'^edit/(?P<article_id>\d+)/$', views.edit, name='edit_article'),
     url(r'^(?P<slug>[-\w]+)/$', views.article, name='article'),
+    # url(r'^upload/', views.upload),
 ]
