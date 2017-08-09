@@ -81,6 +81,24 @@ class EquipmentArea(models.Model):
     def __unicode__(self):
         return self.equipment.name
 
+
+class EquipmentAreaIdle(models.Model):
+    """docstring for ClassName"""
+    equipment_area = models.ForeignKey(EquipmentArea)
+    idle_quantity = models.IntegerField(default=0)
+
+
+    class Meta:
+        verbose_name = 'EquipmentAreaIdle'
+        verbose_name_plural = 'EquipmentAreaIdles'
+
+    def __str__(self):
+        return self.equipment_area.equipment.name
+
+    def __unicode__(self):
+        return self.equipment_area.equipment.name
+
+
 class Operation(models.Model):
     """docstring for ClassName"""
     IN = 'I'

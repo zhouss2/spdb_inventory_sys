@@ -13,6 +13,11 @@
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
     {# <link href="{% static 'css/main.css' %}" rel="stylesheet"> #}
 
+    <!-- Custom CSS -->
+    <link href="{% static 'css/sb-admin.css' %}" rel="stylesheet">
+    <link href="{% static 'font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+
+
     <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
     
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
@@ -70,7 +75,6 @@
 
 
             <li><a href="{% url 'overview' %}">{% trans 'Overview' %}</a></li>
-            <li><a href="{% url 'operationlist' %}">{% trans 'Operations' %}</a></li>
             <li><a href="{% url 'settings' %}">{% trans 'Settings' %}</a></li>
             <li><a href="{% url 'inbox' %}">{% trans 'Messages' %}</a></li>
             <li><a href="http://zjitil" target="_blank">{% trans 'Help' %}</a></li>
@@ -114,12 +118,25 @@
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
             <li><a href="{% url 'overview' %}"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>  {% trans 'Overview' %}</a></li>
-            <li><a href="{% url 'equipmentlist' %}"><span class="glyphicon glyphicon glyphicon-list-alt" aria-hidden="true"></span>  {% trans 'Equipment List' %}</a></li>
+            <li>
+                <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="glyphicon glyphicon glyphicon-list-alt"></i>  {% trans 'Equipment' %}<i class="fa fa-fw fa-caret-down"></i></a>
+                <ul id="demo" class="collapse">
+                    <li>
+                        <a href="{% url 'equipmentlist' %}"><span  aria-hidden="true"></span>  {% trans 'Equipment List' %}</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'operationlist' %}"><span  aria-hidden="true"></span>  {% trans 'Operation List' %}</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'equipmentareaidles' %}"><span  aria-hidden="true"></span>  {% trans 'Idle List' %}</a>
+                    </li>
+                </ul>
+            </li>
             <li><a href="{% url 'feeds' %}"><span class="glyphicon glyphicon-pushpin" aria-hidden="true"></span>  {% trans 'Feed' %}</a></li>
             <li><a href="{% url 'articles' %}"><span class="glyphicon glyphicon-blackboard" aria-hidden="true"></span>  {% trans 'Articles' %}</a></li>
             <li><a href="{% url 'questions' %}"><span class="glyphicon glyphicon-hourglass" aria-hidden="true"></span>  {% trans 'Issues' %}</a></li>
             <li><a href="{% url 'network' %}"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>  {% trans 'Network' %}</a></li>
-            <li><a href="{% url 'equipments' %}"><span class="glyphicon glyphicon-hdd" aria-hidden="true"></span>  {% trans 'Equipments' %}</a></li>
+            <li><a href="{% url 'equipments' %}"><span class="glyphicon glyphicon-hdd" aria-hidden="true"></span>  {% trans 'All Equipments' %}</a></li>
             <li></li>
           </ul>
         </div>

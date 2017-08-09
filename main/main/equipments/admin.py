@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import EquipmentType,Equipment, Area, EquipmentArea, Operation
+from .models import EquipmentType,Equipment, Area, EquipmentArea, Operation, EquipmentAreaIdle
 
 # -*- coding: utf-8 -*-
 # Register your models here.
@@ -28,4 +28,5 @@ admin.site.register(Operation, OperationAdmin)
 admin.site.register(EquipmentType)
 admin.site.register(Area)
 admin.site.register(EquipmentArea)
+admin.site.register(EquipmentAreaIdle)
 admin.site.register(Equipment, EquipmentAdmin)

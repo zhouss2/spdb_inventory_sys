@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% load i18n %}
 {% load staticfiles %}
-
 {% block title %}{% trans 'Overview' %}{% endblock %}
 
 {% block head %}
@@ -12,16 +11,14 @@
         var nextrow = '</div><div class="row">'
         var x = 0
         for(i in Dict) {
-            var inner = '<div class="col-md-4"><div class="panel panel-default"><div id="container_pic_module_pie' + x + '" style="min-width:300px;height:300px"></div></div></div>'
+            var inner = '<div class="col-md-4"><div class="panel panel-green"><div class="panel-heading"><h3 class="panel-title"><i class="fa fa-long-arrow-right"></i>' + i+'区域设备比例' + '</h3></div><div id="container_pic_module_pie' + x + '" style="min-width:300px;height:300px"></div></div></div>'
             document.getElementById("divadd").innerHTML += inner; 
             if(x != 0 && x%3==0){
                 document.getElementById("divadd").innerHTML += nextrow; 
             }
             x = x+1
         }
-
         x = 0
-
         for(i in Dict) {
             var data1 = [];
             var id = "container_pic_module_pie" + x.toString(); 
@@ -36,7 +33,7 @@
                         borderWidth: 0,
                     },
                     title: {
-                        text: i+'区域设备比例'
+                        text: '',
                     },
                     tooltip: {
                         pointFormat: '数量: {point.y},{series.name}:<b>{point.percentage:.1f}%</b>'
@@ -59,16 +56,100 @@
             x = x+1
           }
           });
-    </script>
-        
+    </script>    
 {% endblock head %}
-
 {% block main %}
-
-<div class="page-header">
-    <h1>{% trans 'Overview' %}</h1>
+ <div class="row">
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-tasks fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">{{ undone_questions }}</div>
+                        <div>{% trans 'New Issues' %}</div>
+                    </div>
+                </div>
+            </div>
+            <a href="{% url 'questions' %}">
+                <div class="panel-footer">
+                    <span class="pull-left">{% trans 'View Details' %}</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-green">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-desktop fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">{{ equipment_quantity }}</div>
+                        <div>{% trans 'Equipments' %}</div>
+                    </div>
+                </div>
+            </div>
+            <a href="{% url 'equipments' %}">
+                <div class="panel-footer">
+                    <span class="pull-left">{% trans 'View Details' %}</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-yellow">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-comments fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">{{ feed }}</div>
+                        <div>{% trans 'New Commnets' %}</div>
+                    </div>
+                </div>
+            </div>
+            <a href="{% url 'feeds' %}">
+                <div class="panel-footer">
+                    <span class="pull-left">{% trans 'View Details' %}</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-red">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-users fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">{{ active_users }}</div>
+                        <div>{% trans 'Active Users' %}</div>
+                    </div>
+                </div>
+            </div>
+            <a href="{% url 'network' %}">
+                <div class="panel-footer">
+                    <span class="pull-left">{% trans 'View Details' %}</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
 </div>
-
+<!-- /.row -->
 
 <div class="users">
 <div id="divadd"  class="row">

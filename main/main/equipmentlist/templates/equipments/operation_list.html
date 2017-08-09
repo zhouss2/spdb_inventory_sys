@@ -17,7 +17,8 @@
 <div class="page-header">
     <h1>{% trans 'Operation List' %}</h1>
 </div>
-<table class="table">
+<div class="table-responsive">
+<table  class="table table-bordered table-hover table-striped">
     <caption>设备出入记录</caption>
    <thead>
       <tr>
@@ -33,7 +34,7 @@
         <td>{{ ename.equipment.name }}</td>
           {% for o in object_list %}
             {% if ename.equipment.name == o.equipment.name %}
-              <td>{{ o.quantity }}</td>
+              <td>{{ o.status }} - {{ o.quantity }}</td>
             {% else %}
               <td>0</td>
             {% endif %}
@@ -44,6 +45,6 @@
     {% endfor %}
    </tbody>
 </table>
-
+</div>
 
 {% endblock main %}

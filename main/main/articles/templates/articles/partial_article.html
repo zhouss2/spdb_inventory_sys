@@ -19,7 +19,7 @@
     {{ article.get_content_as_markdown|safe }}
   </div>
   <div class="content">
-    <a href="{{MEDIA_URL}}{{article.upload}}">{{article.upload}}</a>
+    <a href="{{article.upload.url}}">{{article.upload.name}}</a>
   </div>
 
 

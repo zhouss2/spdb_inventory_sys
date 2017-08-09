@@ -688,3 +688,21 @@ msgstr "记录"
 
 msgid "Select a file"
 msgstr "选择文件"
+
+msgid "New Issues"
+msgstr "未解决事件"
+
+msgid "View Details"
+msgstr "详情"
+
+msgid "New Commnets"
+msgstr "新动态"
+
+msgid "Active Users"
+msgstr "活跃用户"
+
+msgid "Idle List"
+msgstr "空置设备"
+
+msgid "All Equipments"
+msgstr "设备清单"

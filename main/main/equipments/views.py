@@ -1,9 +1,10 @@
 from django.shortcuts import render
-from .models import Equipment, Operation, EquipmentArea
+from .models import Equipment, Operation, EquipmentArea, EquipmentAreaIdle
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.cache import cache_page
 from django.views.generic.list import ListView
 from django.utils import timezone
+
 # Create your views here.
 # 
 # 
