@@ -1,7 +1,11 @@
 {% load humanize %}
 {% load i18n %}
 
-<div class="panel panel-default question" question-id="{{ question.id }}">
+{% if question.has_accepted_answer %}
+<div class="panel panel-green question" question-id="{{ question.id }}">
+{% else %}
+<div class="panel panel-red question" question-id="{{ question.id }}">
+{% endif %}
   <div class="panel-heading">
     <h3 class="panel-title">
       {% if question.has_accepted_answer %}

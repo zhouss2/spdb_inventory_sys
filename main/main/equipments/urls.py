@@ -4,6 +4,9 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.equipments, name='equipments'),
+    url(r'^import_unit_batch/$', views.import_unit_batch, name='import_unit_batch'),
+
+
     # url(r'^ask/$', views.ask, name='ask'),
     # url(r'^all/$', views.all_question, name='all'),
     # url(r'^answered/$', views.answered, name='answered'),
