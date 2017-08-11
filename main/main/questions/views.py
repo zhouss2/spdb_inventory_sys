@@ -3,12 +3,13 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseForbidden
 from django.shortcuts import render, redirect, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-
+from django.core import serializers
 from main.decorators import ajax_required
 from main.activities.models import Activity
 
 from .models import Question, Answer, RequestDetail
 from .forms import QuestionForm, AnswerForm
+from main.equipments.models import EquipmentArea
 
 
 def _questions(request, questions, active):
@@ -172,3 +173,10 @@ def favorite(request):
         user.profile.notify_favorited(question)
 
     return HttpResponse(question.calculate_favorites())
+
+
+def get_equipment():
+    pk = request.GET['pk']
+    equipmentarea = get_object_or_404(EquipmentArea, pk=pk)
+    data = serializers.serialize('json', equipmentarea.equipment)
+    return HttpResponse(data, content_type='application/json')
