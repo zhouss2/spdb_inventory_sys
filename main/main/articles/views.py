@@ -12,6 +12,28 @@ from main.articles.forms import ArticleForm
 from main.articles.models import Article, Tag, ArticleComment
 
 
+from django.http import StreamingHttpResponse
+
+def download_file(request,year,filename):  
+    # do something  
+  
+    the_file_name=filename
+    file_name='media/uploads/'+year+'/'+filename
+    response=StreamingHttpResponse(readFile(file_name))  
+    response['Content-Type']='application/octet-stream'  
+    response['Content-Disposition']='attachment;filename="{0}"'.format(the_file_name)  
+    return response  
+  
+def readFile(filename,chunk_size=512):  
+    with open(filename,'rb') as f:  
+        while True:  
+            c=f.read(chunk_size)  
+            if c:  
+                yield c  
+            else:  
+                break  
+
+
 def _articles(request, articles):
     paginator = Paginator(articles, 10)
     page = request.GET.get('page')
@@ -33,7 +55,11 @@ def articles(request):
 
 def article(request, slug):
     article = get_object_or_404(Article, slug=slug, status=Article.PUBLISHED)
-    return render(request, 'articles/article.html', {'article': article})
+    urlp1 = article.upload.name.split(r'/')
+    print(urlp1[1])
+    print(urlp1[2])
+
+    return render(request, 'articles/article.html', {'article': article,'urlp1':urlp1[1],'urlname':urlp1[2]})
 
 
 def tag(request, tag_name):
@@ -65,6 +91,8 @@ def write(request):
             article.status = form.cleaned_data.get('status')
 
         article.save()
+        print(article.upload.url)
+        print(article.upload.name)
 
         tags = form.cleaned_data.get('tags')
         article.create_tags(tags)

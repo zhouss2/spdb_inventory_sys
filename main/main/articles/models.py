@@ -24,7 +24,7 @@ class Article(models.Model):
     update_date = models.DateTimeField(blank=True, null=True)
     update_user = models.ForeignKey(User, null=True, blank=True,
                                     related_name="+")
-    upload = models.FileField(upload_to='uploads/%Y/%m/%d')
+    upload = models.FileField(upload_to='uploads/%Y%m%d', null=True, blank=True)
 
     class Meta:
         verbose_name = _("Article")
@@ -46,6 +46,11 @@ class Article(models.Model):
 
     def get_content_as_markdown(self):
         return markdown.markdown(self.content, safe_mode='escape')
+
+
+    def get_upload(self):
+        return   '/articles/media/' + self.upload.name
+
 
     @staticmethod
     def get_published():

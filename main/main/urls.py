@@ -42,6 +42,7 @@ urlpatterns = [
     url(r'^articles/', include('main.articles.urls')),
     url(r'^messages/', include('main.messenger.urls')),
     url(r'^questions/', include('main.questions.urls')),
+    # url(r'^questions/', include('main.questions.urls', namespace='questions')),
     url(r'^equipments/', include('main.equipments.urls')),
     url(r'^equipmentlist/', include('main.equipmentlist.urls')),
     url(r'^notifications/', include('main.activities.urls')),
@@ -49,7 +50,8 @@ urlpatterns = [
     url(r'^search/$', search_views.search, name='search'),
     url(r'^network/$', core_views.network, name='network'),
     url(r'^(?P<username>[^/]+)/$', core_views.profile, name='profile'),
-    url(r'^media/uploads/\d+/\d+/\d+/\S*$', articles_views.article, name='article'),
+    
+   
 ]
 
 # if settings.DEBUG:

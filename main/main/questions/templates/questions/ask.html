@@ -1,6 +1,27 @@
 {% extends 'base.html' %}
 {% load i18n %}
 
+{% block head %}
+    <script type="text/javascript">
+    $(function() {
+        $('#id_source_area').change(function(){
+            var id = $('#id_source_area').val();
+
+            $.getJSON("{% url 'getequipment' %}?pk="+id, function(data,textStatus){
+                var content='<option value="" selected="selected">---------</option>';
+                for(i in data) {
+                  var list = data[i]
+                  for(index in list){
+                    alert(index);
+                    content+='<option value='+list[index][0]+'>'+list[index][1]+'</option>';
+                  }
+                }
+                $('#id_source_equipmentarea').html(content)
+            });
+        });
+      });
+    </script>
+{% endblock head %}
 {% block main %}
   <ol class="breadcrumb">
     <li><a href="{% url 'questions' %}">{% trans 'Issues' %}</a></li>

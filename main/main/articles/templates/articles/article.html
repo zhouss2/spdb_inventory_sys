@@ -14,7 +14,7 @@
         <li><a href="{% url 'articles' %}">{% trans 'Articles' %}</a></li>
         <li class="active">{% trans 'Article' %}</li>
     </ol>
-    {% include 'articles/partial_article.html' with article=article %}
+    {% include 'articles/partial_article.html' with article=article year=urlp1 name=urlname %}
     {% if not user.is_anonymous %}
         {% include 'articles/partial_article_comments.html' with article=article %}
     {% endif %}

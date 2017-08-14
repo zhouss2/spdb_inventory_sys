@@ -18,12 +18,11 @@
   <div class="content">
     {{ article.get_content_as_markdown|safe }}
   </div>
-  <div class="content">
-    <a href="{{article.upload.url}}">{{article.upload.name}}</a>
-  </div>
+{{year}}
+{{name}}
 
 
-
+<button type="submit" onclick="window.location.href='../../articles/media/{{ article.upload.name }}'" >{% trans 'Download' %}</button> 
 
   {% if article.get_tags %}
     <div class="tags">

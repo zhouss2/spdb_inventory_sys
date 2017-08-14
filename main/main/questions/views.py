@@ -9,8 +9,8 @@ from main.activities.models import Activity
 
 from .models import Question, Answer, RequestDetail
 from .forms import QuestionForm, AnswerForm
-from main.equipments.models import EquipmentArea
-
+from main.equipments.models import EquipmentArea, Area
+import json
 
 def _questions(request, questions, active):
     paginator = Paginator(questions, 10)
@@ -175,8 +175,15 @@ def favorite(request):
     return HttpResponse(question.calculate_favorites())
 
 
-def get_equipment():
+def get_equipment(request):
     pk = request.GET['pk']
-    equipmentarea = get_object_or_404(EquipmentArea, pk=pk)
-    data = serializers.serialize('json', equipmentarea.equipment)
-    return HttpResponse(data, content_type='application/json')
+    area = get_object_or_404(Area, pk=pk)
+    equipmentarea = EquipmentArea.objects.filter(area = area)
+    module_dict = {}
+    for equipment in equipmentarea:
+        if area.name in module_dict:
+            module_dict[area.name].append([equipment.id, equipment.equipment.name, equipment.quantity])
+        else:
+            module_dict[area.name] = [[equipment.id, equipment.equipment.name, equipment.quantity]]
+    print(module_dict)
+    return HttpResponse(json.dumps(module_dict), content_type='application/json')

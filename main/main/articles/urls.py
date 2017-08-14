@@ -11,5 +11,7 @@ urlpatterns = [
     url(r'^tag/(?P<tag_name>.+)/$', views.tag, name='tag'),
     url(r'^edit/(?P<article_id>\d+)/$', views.edit, name='edit_article'),
     url(r'^(?P<slug>[-\w]+)/$', views.article, name='article'),
+    # url(r'^media/uploads/', views.big_file_download, name='big_file_download'),
     # url(r'^upload/', views.upload),
+    url(r'^uploads/(?P<year>\d+)/(?P<filename>\S+)$', views.download_file, name='download_file'),
 ]

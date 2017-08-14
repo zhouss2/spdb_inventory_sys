@@ -173,5 +173,6 @@ LOGIN_REDIRECT_URL = '/overview/'
 ALLOWED_SIGNUP_DOMAINS = ['*']
 
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, r'main\articles\media')
+print(MEDIA_ROOT)
+MEDIA_URL = '/main/articles/media/'
