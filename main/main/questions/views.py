@@ -185,5 +185,4 @@ def get_equipment(request):
             module_dict[area.name].append([equipment.id, equipment.equipment.name, equipment.quantity])
         else:
             module_dict[area.name] = [[equipment.id, equipment.equipment.name, equipment.quantity]]
-    print(module_dict)
     return HttpResponse(json.dumps(module_dict), content_type='application/json')

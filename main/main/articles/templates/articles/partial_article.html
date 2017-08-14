@@ -18,11 +18,9 @@
   <div class="content">
     {{ article.get_content_as_markdown|safe }}
   </div>
-{{year}}
-{{name}}
 
-
-<button type="submit" onclick="window.location.href='../../articles/media/{{ article.upload.name }}'" >{% trans 'Download' %}</button> 
+{{ article.upload.name }}
+<button type="submit" onclick="window.location.href='../../articles/media/{{ article.upload.name }}'" class="btn btn-primary">{% trans 'Download' %}</button> 
 
   {% if article.get_tags %}
     <div class="tags">

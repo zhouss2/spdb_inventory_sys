@@ -11,14 +11,18 @@ from main.decorators import ajax_required
 from main.articles.forms import ArticleForm
 from main.articles.models import Article, Tag, ArticleComment
 
-
+import os
 from django.http import StreamingHttpResponse
+from django.conf import settings
+
 
 def download_file(request,year,filename):  
     # do something  
   
     the_file_name=filename
-    file_name='media/uploads/'+year+'/'+filename
+    print(the_file_name)
+    file_name=os.path.join(settings.MEDIA_ROOT, 'uploads\\'+year+'\\'+filename);
+    print(file_name)
     response=StreamingHttpResponse(readFile(file_name))  
     response['Content-Type']='application/octet-stream'  
     response['Content-Disposition']='attachment;filename="{0}"'.format(the_file_name)  
