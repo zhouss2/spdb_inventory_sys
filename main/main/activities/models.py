@@ -84,8 +84,8 @@ class Notification(models.Model):
     is_read = models.BooleanField(default=False)
 
     class Meta:
-        verbose_name = 'Notification'
-        verbose_name_plural = 'Notifications'
+        verbose_name = _('Notification')
+        verbose_name_plural = _('Notifications')
         ordering = ('-date',)
 
     def __str__(self):

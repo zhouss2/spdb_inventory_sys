@@ -24,5 +24,6 @@ def overview(request):
             module_dict[equipment.area.name].append([equipment.equipment.name, equipment.quantity])
         else:
             module_dict[equipment.area.name] = [[equipment.equipment.name, equipment.quantity]]
+    # print(module_dict)
     return render(request, 'overview.html', {'module_dict':module_dict,'Dict': json.dumps(module_dict),
         'undone_questions':questions,'active_users':users,'equipment_quantity':equipment_quantity,'feed':feed})

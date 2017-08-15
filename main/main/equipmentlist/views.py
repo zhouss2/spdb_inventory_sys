@@ -22,7 +22,21 @@ class OperationListView(ListView):
         context = super(OperationListView, self).get_context_data(**kwargs)
         context['now'] = timezone.now()
         context['object_filter'] = Operation.objects.distinct('equipment')
-        context['object_date_time'] = Operation.objects.order_by('date_time')
+        equipment_list = []
+        for x in context['object_filter']:
+            equipment_list.append(x.equipment.name)
+        o_all = Operation.objects.all().order_by('date_time')
+        dict_date = {}
+        for o in o_all:
+            if o.date_time in dict_date:
+                i = equipment_list.index(o.equipment.name)
+                dict_date[o.date_time][i] = o.status + '-' + str(o.quantity)
+            else:
+                dict_date[o.date_time] = [0 for x in range(len(equipment_list))]
+                i = equipment_list.index(o.equipment.name)
+                dict_date[o.date_time][i] = o.status + '-' + str(o.quantity)
+        context['dict_date'] = dict_date
+        # context['object_date_time'] = Operation.objects.distinct('date_time').order_by('date_time')
         return context
 
 
@@ -30,8 +44,8 @@ def equipmentareaidles(request):
     equipmentareaidles = EquipmentAreaIdle.objects.all()
     module_dict = {}
     for equipmentareaidle in equipmentareaidles:
-        name = equipmentareaidle.equipment_area.area.name
-        equipmentname = equipmentareaidle.equipment_area.equipment.name
+        name = equipmentareaidle.area.name
+        equipmentname = equipmentareaidle.equipment.name
         if name in module_dict:
             module_dict[name].append([equipmentname, equipmentareaidle.idle_quantity])
         else:

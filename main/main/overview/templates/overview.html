@@ -11,13 +11,16 @@
         var nextrow = '</div><div class="row">'
         var x = 0
         for(i in Dict) {
-            var inner = '<div class="col-md-4"><div class="panel panel-green"><div class="panel-heading"><h3 class="panel-title"><i class="fa fa-long-arrow-right"></i>' + i+'区域设备比例' + '</h3></div><div id="container_pic_module_pie' + x + '" style="min-width:300px;height:300px"></div></div></div>'
-            document.getElementById("divadd").innerHTML += inner; 
+            var inner = '<div class="col-md-4"><div class="panel panel-green"><div class="panel-heading"><h3 class="panel-title"><i class="fa fa-long-arrow-right"></i>' + i+'区域设备比例' + '</h3></div><div id="container_pic_module_pie' + x + '" style="min-width:300px;height:300px"></div></div></div>';
+            
             if(x != 0 && x%3==0){
                 document.getElementById("divadd").innerHTML += nextrow; 
             }
+            document.getElementById("divadd").innerHTML += inner; 
+            
             x = x+1
         }
+        
         x = 0
         for(i in Dict) {
             var data1 = [];

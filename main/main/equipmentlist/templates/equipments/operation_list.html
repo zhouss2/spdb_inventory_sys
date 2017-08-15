@@ -23,24 +23,18 @@
    <thead>
       <tr>
          <th>设备名称</th>
-         {% for operation in object_date_time %}
-         <th>{{ operation.date_time }}</th>
+         {% for operation in object_filter %}
+         <th>{{ operation.equipment.name }}</th>
          {% endfor %}
       </tr>
    </thead>
    <tbody>
-    {% for ename in object_filter %}
+    {% for k,v in dict_date.items %}
       <tr>
-        <td>{{ ename.equipment.name }}</td>
-          {% for o in object_list %}
-            {% if ename.equipment.name == o.equipment.name %}
-              <td>{{ o.status }} - {{ o.quantity }}</td>
-            {% else %}
-              <td>0</td>
-            {% endif %}
-               {% empty %}
-                <td>0</td>
-          {% endfor %}
+        <td>{{ k }}</td>
+        {% for o in v %}
+          <td>{{ o }}</td>
+        {% endfor %}
       </tr>
     {% endfor %}
    </tbody>

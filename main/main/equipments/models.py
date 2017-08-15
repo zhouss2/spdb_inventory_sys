@@ -2,6 +2,7 @@ from __future__ import absolute_import
 
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.translation import ugettext_lazy as _
 # Create your models here.
 class Area(models.Model):
     """docstring for ClassName"""
@@ -10,8 +11,8 @@ class Area(models.Model):
     update_date = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        verbose_name = 'Area'
-        verbose_name_plural = 'Areas'
+        verbose_name = _('Area')
+        verbose_name_plural = _('Areas')
         ordering = ('-update_date',)
 
     def __str__(self):
@@ -28,8 +29,8 @@ class EquipmentType(models.Model):
     update_date = models.DateTimeField(auto_now_add=True)
     
     class Meta:
-        verbose_name = 'EquipmentType'
-        verbose_name_plural = 'EquipmentTypes'
+        verbose_name = _('EquipmentType')
+        verbose_name_plural = _('EquipmentTypes')
         ordering = ('-update_date',)
         
     def __str__(self):
@@ -50,8 +51,8 @@ class Equipment(models.Model):
     # is_wasted = models.BooleanField(default=False)
 
     class Meta:
-        verbose_name = 'Equipment'
-        verbose_name_plural = 'Equipments'
+        verbose_name = _('Equipment')
+        verbose_name_plural = _('Equipments')
         ordering = ('-update_date',)
         
     def __str__(self):
@@ -72,8 +73,8 @@ class EquipmentArea(models.Model):
 
 
     class Meta:
-        verbose_name = 'EquipmentArea'
-        verbose_name_plural = 'EquipmentAreas'
+        verbose_name = _('EquipmentArea')
+        verbose_name_plural = _('EquipmentAreas')
 
     def __str__(self):
         return self.equipment.name
@@ -84,19 +85,20 @@ class EquipmentArea(models.Model):
 
 class EquipmentAreaIdle(models.Model):
     """docstring for ClassName"""
-    equipment_area = models.ForeignKey(EquipmentArea)
+    equipment = models.ForeignKey(Equipment)
+    area = models.ForeignKey(Area)
     idle_quantity = models.IntegerField(default=0)
 
 
     class Meta:
-        verbose_name = 'EquipmentAreaIdle'
-        verbose_name_plural = 'EquipmentAreaIdles'
+        verbose_name = _('EquipmentAreaIdle')
+        verbose_name_plural = _('EquipmentAreaIdles')
 
     def __str__(self):
-        return self.equipment_area.equipment.name
+        return self.equipment.name
 
     def __unicode__(self):
-        return self.equipment_area.equipment.name
+        return self.equipment.name
 
 
 class Operation(models.Model):
@@ -144,12 +146,13 @@ class Operation(models.Model):
             else:
                 equipment_dest_area = EquipmentArea.objects.filter(area=self.area,equipment=self.equipment)
                 if not equipment_dest_area:
-                    new_equipment_area = EquipmentArea()
-                    new_equipment_area.area = self.area
-                    new_equipment_area.equipment = self.equipment
-                    new_equipment_area.quantity += self.quantity
-                    new_equipment_area.save()
-                else:
+                    # new_equipment_area = EquipmentArea()
+                    # new_equipment_area.area = self.area
+                    # new_equipment_area.equipment = self.equipment
+                    # new_equipment_area.quantity += self.quantity
+                    # new_equipment_area.save()
+                    pass
+                elif equipment_dest_area.name == u'合肥分中心':
                     for equipment in equipment_dest_area:
                         equipment.quantity += self.quantity
                         equipment.save()
@@ -162,8 +165,8 @@ class Operation(models.Model):
 
 
     class Meta:
-            verbose_name = 'Operation'
-            verbose_name_plural = 'Operations'
+            verbose_name = _('Operation')
+            verbose_name_plural = _('Operations')
      
     def __str__(self):
         return self.equipment.name

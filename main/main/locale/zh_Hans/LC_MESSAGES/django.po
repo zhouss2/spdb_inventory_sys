@@ -35,7 +35,7 @@ msgstr "回答了你的事件："
 
 #: activities/models.py:63
 msgid "accepted your answer: "
-msgstr "采用了你的回答："
+msgstr "确认事件："
 
 #: activities/models.py:64
 msgid "edited your article:"
@@ -706,3 +706,22 @@ msgstr "空置设备"
 
 msgid "All Equipments"
 msgstr "设备清单"
+
+msgid "Activities"
+msgstr "赞"
+
+
+msgid "Profiles"
+msgstr "信息"
+
+msgid "Areas"
+msgstr "区域"
+
+msgid "EquipmentAreaIdles"
+msgstr "空置设备"
+
+msgid "EquipmentAreas"
+msgstr "区域设备"
+
+msgid "EquipmentTypes"
+msgstr "设备类型"

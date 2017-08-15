@@ -3,7 +3,7 @@ from __future__ import absolute_import
 import markdown
 from django.db import models
 from django.contrib.auth.models import User
-
+from django.utils.translation import ugettext_lazy as _
 from main.activities.models import Activity
 from main.equipments.models import Area, EquipmentArea, Equipment
 
@@ -17,8 +17,8 @@ class Question(models.Model):
     has_accepted_answer = models.BooleanField(default=False)
 
     class Meta:
-        verbose_name = 'Issue'
-        verbose_name_plural = 'Issues'
+        verbose_name = _('Issue')
+        verbose_name_plural = _('Issues')
         ordering = ('-update_date',)
 
     def __str__(self):
