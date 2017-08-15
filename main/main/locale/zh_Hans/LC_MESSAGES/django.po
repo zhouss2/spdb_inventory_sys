@@ -725,3 +725,18 @@ msgstr "区域设备"
 
 msgid "EquipmentTypes"
 msgstr "设备类型"
+
+msgid "Sign up for SWMS"
+msgstr "注册资产管理系统"
+
+msgid "SWMS"
+msgstr "资产管理系统"
+
+msgid "Sign up for SPDB WM System"
+msgstr "注册资产管理系统"
+
+msgid "User Name"
+msgstr "用户名"
+
+msgid "SPDB Warehouse Management System"
+msgstr "SPDB资产管理系统"

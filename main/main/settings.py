@@ -175,5 +175,5 @@ ALLOWED_SIGNUP_DOMAINS = ['*']
 
 
 MEDIA_ROOT = os.path.join(BASE_DIR, r'main\articles\media')
-print(MEDIA_ROOT)
+# print(MEDIA_ROOT)
 MEDIA_URL = '/main/articles/media/'
