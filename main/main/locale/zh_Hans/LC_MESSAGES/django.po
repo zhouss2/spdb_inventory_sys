@@ -740,3 +740,6 @@ msgstr "用户名"
 
 msgid "SPDB Warehouse Management System"
 msgstr "SPDB资产管理系统"
+
+msgid "Equipment List(By Area)"
+msgstr "设备列表(按区域)"

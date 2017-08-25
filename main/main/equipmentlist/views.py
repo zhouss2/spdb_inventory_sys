@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from django.views.generic.list import ListView
 from django.utils import timezone
-from main.equipments.models import EquipmentArea, Operation, EquipmentAreaIdle
+from main.equipments.models import EquipmentArea, Operation, EquipmentAreaIdle, Area
 import json
-
+from django.db.models import Q 
 # Create your views here.
 class EquipmentListView(ListView):
     model = EquipmentArea
@@ -51,3 +51,15 @@ def equipmentareaidles(request):
         else:
             module_dict[name] = [[equipmentname, equipmentareaidle.idle_quantity]]
     return render(request, 'equipments/equipmentareaidle.html', {'module_dict':module_dict,'Dict': json.dumps(module_dict)})
+
+
+def equipmentlistbyarea(request):
+    areas = Area.objects.filter(~Q(name='warehouse'))
+    module_dict = {}
+    for e in areas:
+        name = e.name
+        if name in module_dict:
+            pass
+        else:
+            module_dict[name] = sum([x.quantity for x in EquipmentArea.objects.filter(area=e)])
+    return render(request, 'equipments/equipmentlistbyarea.html', {'module_dict':module_dict})

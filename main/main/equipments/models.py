@@ -63,7 +63,7 @@ class Equipment(models.Model):
 
     def get_quantity(self):
         area = Area.objects.get(name='warehouse')
-        return sum([x.quantity for x in EquipmentArea.objects.filter(equipment=self) if x.area == area])
+        return sum([x.quantity for x in EquipmentArea.objects.filter(equipment=self) if x.area != area])
 
 
 class EquipmentArea(models.Model):

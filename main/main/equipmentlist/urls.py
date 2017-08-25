@@ -1,12 +1,13 @@
 from django.conf.urls import url
 
 from . import views
-from main.equipmentlist.views import EquipmentListView, OperationListView,equipmentareaidles
+from main.equipmentlist.views import EquipmentListView, OperationListView,equipmentareaidles, equipmentlistbyarea
 
 urlpatterns = [
     url(r'^$', EquipmentListView.as_view(), name='equipmentlist'),
     url(r'^operationlist/$', OperationListView.as_view(), name='operationlist'),
     url(r'^equipmentareaidle/$', equipmentareaidles, name='equipmentareaidles'),
+    url(r'^equipmentlistbyarea/$', equipmentlistbyarea, name='equipmentlistbyarea'),
     # url(r'^ask/$', views.ask, name='ask'),
     # url(r'^all/$', views.all_question, name='all'),
     # url(r'^answered/$', views.answered, name='answered'),
