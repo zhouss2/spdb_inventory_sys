@@ -29,9 +29,11 @@
    <tbody>
     {% for equipmentarea in object_list %}
       <tr>
+         {%if equipmentarea.area.name != 'warehouse' %}
          <td>{{ equipmentarea.area.name }}</td>
          <td>{{ equipmentarea.equipment.name }}</td>
          <td>{{ equipmentarea.quantity }}</td>
+         {% endif %}
       </tr>
     {% endfor %}
    </tbody>

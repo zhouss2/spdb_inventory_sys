@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseForbidden
 from django.shortcuts import render, redirect, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from main.equipments.models import EquipmentArea, Equipment
+from main.equipments.models import EquipmentArea, Equipment, Area
 from main.questions.models import Question
 from main.feeds.models import Feed
 from django.contrib.auth.models import User
@@ -13,7 +13,8 @@ import json
 # 
 # 
 def overview(request):
-    equipments = EquipmentArea.objects.all()
+    area = Area.objects.get(name='warehouse')
+    equipments = EquipmentArea.objects.filter(~Q(area=area))
     questions = len(Question.get_unanswered())
     users = len(User.objects.filter(is_active=True))
     equipment_quantity = len(Equipment.objects.all())
