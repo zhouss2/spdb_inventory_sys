@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic.list import ListView
 from django.utils import timezone
-from main.equipments.models import EquipmentArea, Operation, EquipmentAreaIdle, Area
+from main.equipments.models import EquipmentArea, Operation, EquipmentAreaIdle, Area, EquipmentType,Equipment
 import json
 from django.db.models import Q 
 # Create your views here.
@@ -53,6 +53,7 @@ def equipmentareaidles(request):
     return render(request, 'equipments/equipmentareaidle.html', {'module_dict':module_dict,'Dict': json.dumps(module_dict)})
 
 
+
 def equipmentlistbyarea(request):
     areas = Area.objects.filter(~Q(name='warehouse'))
     module_dict = {}
@@ -63,3 +64,45 @@ def equipmentlistbyarea(request):
         else:
             module_dict[name] = sum([x.quantity for x in EquipmentArea.objects.filter(area=e)])
     return render(request, 'equipments/equipmentlistbyarea.html', {'module_dict':module_dict})
+
+
+def equipmentlistbylcd(request):
+    et = EquipmentType.objects.filter(pk=2) # lcd
+    equipment = Equipment.objects.filter(~Q(equipment_type=et))
+    areas = Area.objects.filter(~Q(name='warehouse'))
+
+    module_dict = {}
+    for a in areas:
+        name = a.name
+        if name in module_dict:
+            pass
+        else:
+            module_dict[name] = []
+            for e in equipment:
+                ea = EquipmentArea.objects.filter(area=a, equipment=e)
+                num = 0
+                if len(ea) > 0:
+                    num = ea[0].quantity
+                module_dict[name].append(num)
+    return render(request, 'equipments/equipmentlistbylcd.html', {'module_dict':module_dict,'equipment':equipment})
+
+
+def equipmentlistbypc(request):
+    et = EquipmentType.objects.filter(pk=1) # lcd
+    equipment = Equipment.objects.filter(~Q(equipment_type=et))
+    areas = Area.objects.filter(~Q(name='warehouse'))
+
+    module_dict = {}
+    for a in areas:
+        name = a.name
+        if name in module_dict:
+            pass
+        else:
+            module_dict[name] = []
+            for e in equipment:
+                ea = EquipmentArea.objects.filter(area=a, equipment=e)
+                num = 0
+                if len(ea) > 0:
+                    num = ea[0].quantity
+                module_dict[name].append(num)
+    return render(request, 'equipments/equipmentlistbypc.html', {'module_dict':module_dict,'equipment':equipment})

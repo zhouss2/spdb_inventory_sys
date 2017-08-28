@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load staticfiles %}
+
+{% block title %}
+{% trans "Equipments" %}
+{% endblock title %}
+
+{% block head %}
+<script src="{% static 'js/jquery.table2excel.js' %}"></script>
+<script type="text/javascript">
+$(document).ready(function(){    
+  $("button").click(function(){
+    $("#tlcd").table2excel(
+    {
+        exclude:".noExl",  //不被导出的表格行的CSS class类
+        name:"PC",   //导出的excel文档名称
+        filename:"PC"   //excel文件的名称
+    });
+ });  
+}); 
+</script>
+{% endblock head %}
+
+{% block main %}
+<div class="page-header">
+    <h1>{% trans 'Equipment List(By PC)' %}</h1>
+    <button  type="button"  class="btn btn-primary pull-right">{% trans 'Download Excel' %}</button>
+</div>
+<div class="table-responsive">
+<table id='tlcd' class="table table-bordered table-hover table-striped">
+    <caption>设备列表(PC明细)</caption>
+   <thead>
+      <tr>
+         <th>楼层名称</th>
+         {% for e in equipment %}
+         <th>{{ e.name }}</th>
+         {% endfor %}
+      </tr>
+   </thead>
+   <tbody>
+    {% for k,v in module_dict.items %}
+      <tr>
+         <td>{{ k }}</td>
+         {% for item in v %}
+         <td>{{ item }}</td>
+         {% endfor %}
+      </tr>
+    {% endfor %}
+   </tbody>
+</table>
+</div>
+{% endblock main %}

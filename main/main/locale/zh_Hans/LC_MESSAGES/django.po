@@ -743,3 +743,12 @@ msgstr "SPDB资产管理系统"
 
 msgid "Equipment List(By Area)"
 msgstr "设备列表(按区域)"
+
+msgid "Equipment List(By LCD)"
+msgstr "设备列表(显示器明细)"
+
+msgid "Equipment List(By PC)"
+msgstr "设备列表(PC明细)"
+
+msgid "Download Excel"
+msgstr "下载Excel"

@@ -18,8 +18,8 @@
     <link href="{% static 'font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
 
 
-    <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
-    
+    <!-- <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>-->
+    <script src="{% static 'js/jquery.min.js' %}"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="{% static 'assets/css/ie10-viewport-bug-workaround.css' %}" rel="stylesheet">
 
@@ -126,6 +126,12 @@
                     </li>
                     <li>
                         <a href="{% url 'equipmentlistbyarea' %}"><span  aria-hidden="true"></span>  {% trans 'Equipment List(By Area)' %}</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'equipmentlistbylcd' %}"><span  aria-hidden="true"></span>  {% trans 'Equipment List(By LCD)' %}</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'equipmentlistbypc' %}"><span  aria-hidden="true"></span>  {% trans 'Equipment List(By PC)' %}</a>
                     </li>
                     <li>
                         <a href="{% url 'operationlist' %}"><span  aria-hidden="true"></span>  {% trans 'Operation List' %}</a>
