@@ -67,7 +67,7 @@ def equipmentlistbyarea(request):
 
 
 def equipmentlistbylcd(request):
-    et = EquipmentType.objects.filter(pk=2) # lcd
+    et = EquipmentType.objects.filter(pk=1) # lcd
     equipment = Equipment.objects.filter(~Q(equipment_type=et))
     areas = Area.objects.filter(~Q(name='warehouse'))
 
@@ -88,7 +88,7 @@ def equipmentlistbylcd(request):
 
 
 def equipmentlistbypc(request):
-    et = EquipmentType.objects.filter(pk=1) # lcd
+    et = EquipmentType.objects.filter(pk=2) # pc
     equipment = Equipment.objects.filter(~Q(equipment_type=et))
     areas = Area.objects.filter(~Q(name='warehouse'))
 
