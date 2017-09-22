@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load staticfiles %}
+{% block title %}{% trans 'Overview' %}{% endblock %}
+
+{% block head %}
+    <script src="{% static 'js/highcharts.js' %}"></script>
+    <script type="text/javascript">
+        $(function() {
+        var Dict = {{ Dict|safe }};
+        var nextrow = '</div><div class="row">'
+        var x = 0
+        for(i in Dict) {
+            var inner = '<div class="col-md-4"><div class="panel panel-green"><div class="panel-heading"><h3 class="panel-title"><i class="fa fa-long-arrow-right"></i>' + i+'区域设备比例' + '</h3></div><div id="container_pic_module_pie' + x + '" style="min-width:300px;height:300px"></div></div></div>';
+            
+            if(x != 0 && x%3==0){
+                document.getElementById("divadd").innerHTML += nextrow; 
+            }
+            document.getElementById("divadd").innerHTML += inner; 
+            
+            x = x+1
+        }
+        
+        x = 0
+        for(i in Dict) {
+            var data1 = [];
+            var id = "container_pic_module_pie" + x.toString(); 
+            var list = Dict[i]
+            for(index in list){
+                data1.push([list[index][0],list[index][1]]);
+            }
+                    chart = new Highcharts.Chart({
+                    chart: {
+                        renderTo: id,
+                        type: 'pie',
+                        borderWidth: 0,
+                    },
+                    title: {
+                        text: '',
+                    },
+                    tooltip: {
+                        pointFormat: '数量: {point.y},{series.name}:<b>{point.percentage:.1f}%</b>'
+                    },
+                    plotOptions: {
+                        pie: {
+                            size: '80%'
+                        }
+                    },
+                    credits: {
+                         enabled: false
+                    },
+                    series: [{
+                        type:'pie',
+                        name: '设备占比',
+                        data:data1 ,
+                     }]
+                });
+            
+            x = x+1
+          }
+          });
+        
+    </script>    
+{% endblock head %}
+{% block main %}
+
+<div id="divadd"  class="row">
+</div>
+
+
+{% endblock main %}
