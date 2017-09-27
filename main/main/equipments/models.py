@@ -13,7 +13,7 @@ class Area(models.Model):
     class Meta:
         verbose_name = _('Area')
         verbose_name_plural = _('Areas')
-        ordering = ('-update_date',)
+        ordering = ('-name',)
 
     def __str__(self):
         return self.name
