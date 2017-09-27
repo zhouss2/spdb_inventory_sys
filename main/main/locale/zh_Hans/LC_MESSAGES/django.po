@@ -752,3 +752,6 @@ msgstr "设备列表(PC明细)"
 
 msgid "Download Excel"
 msgstr "下载Excel"
+
+msgid "get_all"
+msgstr "总览所有"

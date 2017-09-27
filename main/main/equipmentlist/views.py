@@ -100,6 +100,7 @@ def equipmentlistbypc(request):
     areas = Area.objects.filter(~Q(name='warehouse'))
 
     module_dict = {}
+    len_module = 0
     for a in areas:
         name = a.name
         if name in module_dict:
@@ -112,4 +113,10 @@ def equipmentlistbypc(request):
                 if len(ea) > 0:
                     num = ea[0].quantity
                 module_dict[name].append(num)
+            len_module = len(module_dict[name])
+    module_dict[u'总计'] = [0 for x in range(len_module)]
+    for k,v in module_dict.items():
+        if k!=u'总计':
+            for i,value in enumerate(v):
+                module_dict[u'总计'][i] += value
     return render(request, 'equipments/equipmentlistbypc.html', {'module_dict':module_dict,'equipment':equipment})

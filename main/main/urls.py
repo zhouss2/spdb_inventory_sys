@@ -37,7 +37,7 @@ urlpatterns = [
     url(r'^logout', auth_views.logout, {'next_page': '/'}, name='logout'),
     url(r'^signup/$', authentication_views.signup, name='signup'),
     url(r'^overview/', include('main.overview.urls')),
-    url(r'^overview_all/',overview_views.overview_all, name='overview_all' ),
+    url(r'^get_all/',overview_views.get_all, name='get_all' ),
     url(r'^feeds/', include('main.feeds.urls')),
     url(r'^settings/', include('main.core.urls')),
     url(r'^articles/', include('main.articles.urls')),

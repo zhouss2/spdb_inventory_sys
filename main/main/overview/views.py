@@ -30,11 +30,11 @@ def overview(request):
         'undone_questions':questions,'active_users':users,'equipment_quantity':equipment_quantity,'feed':feed})
 
 
-def overview_all(request):
+def get_all(request):
     equipments = Equipment.objects.all()
     module_dict = {}
     module_dict[u'总计'] = []
     for equipment in equipments:
         module_dict[u'总计'].append([equipment.name, equipment.get_quantity()])
     # print(module_dict)
-    return render(request, 'overview_all.html', {'module_dict':module_dict,'Dict': json.dumps(module_dict)})    
+    return render(request, 'get_all.html', {'module_dict':module_dict,'Dict': json.dumps(module_dict)})    
